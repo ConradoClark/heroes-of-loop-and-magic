@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4r6he5r3rnaf"]
+
+[ext_resource type="Script" uid="uid://c56kwxelmmbri" path="res://scripts/game/player/marker_line.gd" id="1_apmvm"]
+[ext_resource type="Texture2D" uid="uid://c0b4juwa46c12" path="res://textures/sprites/ink_test.png" id="1_lnvhu"]
+
+[node name="DefaultBlackLine" type="Line2D"]
+texture_repeat = 2
+width = 48.0
+texture = ExtResource("1_lnvhu")
+texture_mode = 1
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 12
+antialiased = true
+script = ExtResource("1_apmvm")
+type = "tap"
+metadata/_custom_type_script = "uid://c56kwxelmmbri"

@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=3 uid="uid://suj5fxf2xncx"]
+
+[ext_resource type="Script" uid="uid://bbe3kfjxtdmgu" path="res://scripts/game/player/ink_manager.gd" id="1_8xafb"]
+[ext_resource type="Script" uid="uid://bkei43vrao416" path="res://scripts/game/player/inks/tap_ink.gd" id="2_oniie"]
+[ext_resource type="Script" uid="uid://dvsu4kgpgqnbi" path="res://scripts/core/object_registrar.gd" id="3_ef2rj"]
+[ext_resource type="Script" uid="uid://tm1xsyh3wur2" path="res://scripts/game/player/line_drawer.gd" id="4_kejiv"]
+[ext_resource type="Texture2D" uid="uid://dg8m1gbvevld5" path="res://textures/ui/white.png" id="5_8b6fr"]
+[ext_resource type="Script" uid="uid://cat8fc8s1q74u" path="res://scripts/game/player/path_follower.gd" id="6_ibb2w"]
+[ext_resource type="Shader" uid="uid://tw07i12iprdr" path="res://shaders/pixelate.gdshader" id="7_oniie"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oniie"]
+shader = ExtResource("7_oniie")
+shader_parameter/pixel_size = 4
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InkManager" type="Node" parent="."]
+script = ExtResource("1_8xafb")
+inks = Dictionary[String, Script]({
+"tap": ExtResource("2_oniie")
+})
+metadata/_custom_type_script = "uid://bbe3kfjxtdmgu"
+
+[node name="InkContainer" type="Node2D" parent="."]
+
+[node name="ObjectRegistrar" type="Node" parent="InkContainer" node_paths=PackedStringArray("object")]
+script = ExtResource("3_ef2rj")
+object = NodePath("..")
+registry_name = "ink_container"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="LineDrawer" type="Node" parent="." node_paths=PackedStringArray("line_container")]
+script = ExtResource("4_kejiv")
+line_template = "uid://c4r6he5r3rnaf"
+line_container = NodePath("../LineContainer")
+step = 10.0
+metadata/_custom_type_script = "uid://tm1xsyh3wur2"
+
+[node name="LineContainer" type="Node2D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(960, 540)
+size_2d_override = Vector2i(480, 270)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(232, 141)
+scale = Vector2(32, 32)
+texture = ExtResource("5_8b6fr")
+
+[node name="PathFollower" type="Node" parent="SubViewportContainer/SubViewport/Sprite2D" node_paths=PackedStringArray("reference")]
+script = ExtResource("6_ibb2w")
+reference = NodePath("..")
+speed = 100.0
+metadata/_custom_type_script = "uid://cat8fc8s1q74u"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_oniie")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

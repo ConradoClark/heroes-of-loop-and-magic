@@ -1,0 +1,51 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="heroes-of-loop-and-magic"
+config/tags=PackedStringArray("jam")
+run/main_scene="uid://suj5fxf2xncx"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+
+[autoload]
+
+World="*res://scripts/core/world.gd"
+SoundManager="*res://scripts/core/sound_manager.gd"
+Fx="*res://scripts/core/fx.gd"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/stretch/mode="canvas_items"
+
+[file_customization]
+
+folder_colors={
+"res://audio/": "red",
+"res://data/": "green",
+"res://fonts/": "orange",
+"res://scenes/": "yellow",
+"res://scripts/": "pink",
+"res://shaders/": "purple",
+"res://textures/": "green"
+}
+
+[layer_names]
+
+2d_physics/layer_1="Obstacle"
+2d_physics/layer_2="Tap"
+2d_physics/layer_3="AffectedByTap"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
