@@ -47,5 +47,8 @@ folder_colors={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
+textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0901961, 0.0666667, 0.101961, 1)

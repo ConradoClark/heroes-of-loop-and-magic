@@ -4,13 +4,10 @@
 [ext_resource type="Script" uid="uid://bkei43vrao416" path="res://scripts/game/player/inks/tap_ink.gd" id="2_oniie"]
 [ext_resource type="Script" uid="uid://dvsu4kgpgqnbi" path="res://scripts/core/object_registrar.gd" id="3_ef2rj"]
 [ext_resource type="Script" uid="uid://tm1xsyh3wur2" path="res://scripts/game/player/line_drawer.gd" id="4_kejiv"]
-[ext_resource type="Texture2D" uid="uid://dg8m1gbvevld5" path="res://textures/ui/white.png" id="5_8b6fr"]
+[ext_resource type="Texture2D" uid="uid://ck7hwlogswxf5" path="res://textures/sprites/knight.png" id="5_8xafb"]
+[ext_resource type="Texture2D" uid="uid://3cgdf2ahmbcc" path="res://textures/sprites/lumber_mill.png" id="6_ef2rj"]
 [ext_resource type="Script" uid="uid://cat8fc8s1q74u" path="res://scripts/game/player/path_follower.gd" id="6_ibb2w"]
-[ext_resource type="Shader" uid="uid://tw07i12iprdr" path="res://shaders/pixelate.gdshader" id="7_oniie"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oniie"]
-shader = ExtResource("7_oniie")
-shader_parameter/pixel_size = 4
+[ext_resource type="Texture2D" uid="uid://djgkmmd4blsf6" path="res://textures/sprites/gold_mine.png" id="7_oniie"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -45,40 +42,21 @@ metadata/_custom_type_script = "uid://tm1xsyh3wur2"
 
 [node name="LineContainer" type="Node2D" parent="."]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="GoldMine" type="Sprite2D" parent="."]
+position = Vector2(527, 198)
+texture = ExtResource("7_oniie")
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(960, 540)
-size_2d_override = Vector2i(480, 270)
-size_2d_override_stretch = true
-render_target_update_mode = 4
+[node name="Lumbermill" type="Sprite2D" parent="."]
+position = Vector2(643, 363)
+texture = ExtResource("6_ef2rj")
 
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(232, 141)
-scale = Vector2(32, 32)
-texture = ExtResource("5_8b6fr")
+texture = ExtResource("5_8xafb")
 
-[node name="PathFollower" type="Node" parent="SubViewportContainer/SubViewport/Sprite2D" node_paths=PackedStringArray("reference")]
+[node name="PathFollower" type="Node" parent="Sprite2D" node_paths=PackedStringArray("reference")]
 script = ExtResource("6_ibb2w")
+viewport_proportion = 1.0
 reference = NodePath("..")
 speed = 100.0
 metadata/_custom_type_script = "uid://cat8fc8s1q74u"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_oniie")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
