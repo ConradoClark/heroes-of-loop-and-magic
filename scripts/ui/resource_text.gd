@@ -15,11 +15,14 @@ func _on_player_resources(obj: PlayerResources):
         obj.on_clear_temp_resources.connect(_on_clear)
     else:
         obj.on_resource_changed.connect(_on_resource_changed)
+    if obj.resources.has(resource):
+        _on_resource_changed(resource, 0, obj[resource])
 
 func _on_resource_changed(res: String, amount: int, total: int):
     if res != resource: return
     text = "%0*d" % [digits, total]
     if is_temporary:
+        text = str(total)
         visible = total != 0
         text = "+" if total >0 else "-" + text
 

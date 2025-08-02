@@ -9,6 +9,7 @@ signal on_resource_changed(res: String, amount: int, total: int)
 signal on_temp_resource_changed(res: String, amount: int, total: int)
 signal on_clear_temp_resources
 
+
 func _ready():
     World.register("player_resources", self)
 
@@ -31,3 +32,16 @@ func add_temporary_resource(res: String, amount: int):
 func clear_temporary_resources():
     temporary_resources.clear()
     on_clear_temp_resources.emit()
+
+func check(values: Dictionary[String,int]) -> bool:
+    for key in values:
+        if not resources.has(key): return false
+        if resources[key] < values[key]: return false
+    return true
+
+func pay(values: Dictionary[String, int]) -> bool:
+    if check(values):
+        for key in values:
+            resources[key]-= values[key]
+        return true
+    return false

@@ -37,13 +37,17 @@ func wait_for_object(object_name: String):
     require(object_name, noop)
   await register_signals[object_name]
 
-func require(object_name: String, on_available: Callable) -> Object:
+func wait_for_objects(object_names: Array[String]):
+  for obj in object_names:
+    await wait_for_object(obj)
+
+func require(object_name: String, on_available: Callable = World.noop) -> Object:
   if not world.has(object_name):
     if on_available:
       var registration = _get_or_add_signal(register_signals, object_name)
       registration.connect(on_available, CONNECT_ONE_SHOT)
     return null
-  on_available.call(world[object_name])
+  if on_available: on_available.call(world[object_name])
   return world[object_name]
 
 static func populate(source: Object, obj: String) -> Callable:

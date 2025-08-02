@@ -12,15 +12,22 @@ var current_line: MarkerLine
 var moving_line: MarkerLine
 var tolerance: float = .50
 var ink_manager: InkManager
+var blocker: Blocker
 
 func _ready():
     line_prefab = load(line_template)
+    blocker = Blocker.new()
+    add_child(blocker)
+    World.register("line_drawer", self)
     World.require("ink_manager", _on_ink_manager)
     
 func _on_ink_manager(obj: InkManager):
     ink_manager = obj
 
 func _input(event: InputEvent) -> void:
+    if blocker.is_blocked():
+        #if blocked and drawing, what to do?
+        return
     if event is InputEventMouseButton:
         if event.button_index == MOUSE_BUTTON_LEFT:
             pressed = event.pressed
@@ -52,6 +59,7 @@ func _spawn_line(pos: Vector2):
     last_position = pos
     
 func _detect_closed_shape() -> bool:
+    if not current_line: return false
     var total_points = len(current_line.points)
     if total_points < 10: return false
     var x_min = null
@@ -77,7 +85,7 @@ func _detect_closed_shape() -> bool:
             is_closing = true
             break
     if is_closing and ink_manager:
-        ink_manager.on_closed_shape.emit(current_line.points)
+        ink_manager.on_closed_shape.emit(current_line.get_instance_id(), current_line.points)
     return is_closing
           
 func _detect_circle() -> bool:
@@ -119,6 +127,7 @@ func _detect_circle() -> bool:
     return is_circle
     
 func _disappear_on_release(line: Line2D):
+    ink_manager.on_shape_destroyed.emit(line.get_instance_id())
     var tween = create_tween()
     tween.tween_property(line, "width", 0., .3)\
         .set_ease(Tween.EASE_IN)\

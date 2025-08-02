@@ -1,0 +1,377 @@
+[gd_scene load_steps=30 format=3 uid="uid://suj5fxf2xncx"]
+
+[ext_resource type="Script" uid="uid://bbe3kfjxtdmgu" path="res://scripts/game/player/ink_manager.gd" id="1_lsg8u"]
+[ext_resource type="Script" uid="uid://bkei43vrao416" path="res://scripts/game/player/inks/tap_ink.gd" id="2_ep3tm"]
+[ext_resource type="Script" uid="uid://b1rr5cji2dq64" path="res://scripts/game/player/path_manager.gd" id="3_0tqu0"]
+[ext_resource type="Script" uid="uid://dvsu4kgpgqnbi" path="res://scripts/core/object_registrar.gd" id="3_51exa"]
+[ext_resource type="Script" uid="uid://tm1xsyh3wur2" path="res://scripts/game/player/line_drawer.gd" id="4_1g4j3"]
+[ext_resource type="Texture2D" uid="uid://djgkmmd4blsf6" path="res://textures/sprites/gold_mine.png" id="5_12ab8"]
+[ext_resource type="Script" uid="uid://w657rmllofrk" path="res://scripts/game/player/player_resources.gd" id="5_vfwhk"]
+[ext_resource type="Script" uid="uid://drilr6c5kr0la" path="res://scripts/game/effects/fade_scale.gd" id="6_8nnr2"]
+[ext_resource type="Texture2D" uid="uid://3cgdf2ahmbcc" path="res://textures/sprites/lumber_mill.png" id="6_bltja"]
+[ext_resource type="Texture2D" uid="uid://ck7hwlogswxf5" path="res://textures/sprites/knight.png" id="7_8nnr2"]
+[ext_resource type="Texture2D" uid="uid://dg8m1gbvevld5" path="res://textures/ui/white.png" id="7_rht18"]
+[ext_resource type="Script" uid="uid://cat8fc8s1q74u" path="res://scripts/game/player/path_follower.gd" id="8_rht18"]
+[ext_resource type="PackedScene" uid="uid://y2vbesdgta02" path="res://scenes/ui/message_box.tscn" id="9_0tqu0"]
+[ext_resource type="Script" uid="uid://k8n2op1t2yt3" path="res://scripts/core/actor.gd" id="10_51exa"]
+[ext_resource type="Script" uid="uid://dvnf0cajelsoy" path="res://scripts/game/objects/resource_giver.gd" id="10_t4akp"]
+[ext_resource type="Texture2D" uid="uid://xua4m7acgw41" path="res://textures/sprites/white_circle_4x.png" id="11_1g4j3"]
+[ext_resource type="Script" uid="uid://bon0cijw885ro" path="res://scripts/game/effects/bobble.gd" id="12_1g4j3"]
+[ext_resource type="Script" uid="uid://drkgqbwhfq641" path="res://scripts/cinematics/tutorial.gd" id="13_12ab8"]
+[ext_resource type="Script" uid="uid://begb58aqkntr7" path="res://scripts/game/effects/speak.gd" id="13_bltja"]
+[ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="16_rht18"]
+[ext_resource type="PackedScene" uid="uid://bcg0qpbcugib3" path="res://scenes/ui/resource_container.tscn" id="21_n4xfx"]
+[ext_resource type="Texture2D" uid="uid://bcikxyx1u82we" path="res://textures/ui/icons/wood.png" id="22_shuml"]
+[ext_resource type="Texture2D" uid="uid://ckmchbj500jke" path="res://textures/ui/icons/gold.png" id="23_47tla"]
+[ext_resource type="PackedScene" uid="uid://bjlr2cljr2l4h" path="res://scenes/ui/resource_container_2.tscn" id="24_2ofrh"]
+[ext_resource type="Script" uid="uid://befbm3t0x61pp" path="res://scripts/ui/ui_fade.gd" id="24_c8uhw"]
+[ext_resource type="Texture2D" uid="uid://cw1h58be0n332" path="res://textures/ui/icons/sword.png" id="25_blrat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfwhk"]
+size = Vector2(90, 75)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rht18"]
+radius = 18.78
+height = 67.06
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8uhw"]
+bg_color = Color(0.431373, 0.317647, 0.415686, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="InkManager" type="Node" parent="Managers"]
+script = ExtResource("1_lsg8u")
+inks = Dictionary[String, Script]({
+"tap": ExtResource("2_ep3tm")
+})
+metadata/_custom_type_script = "uid://bbe3kfjxtdmgu"
+
+[node name="PathManager" type="Node" parent="Managers"]
+script = ExtResource("3_0tqu0")
+metadata/_custom_type_script = "uid://b1rr5cji2dq64"
+
+[node name="LineDrawer" type="Node" parent="Managers" node_paths=PackedStringArray("line_container")]
+script = ExtResource("4_1g4j3")
+line_template = "uid://c4r6he5r3rnaf"
+line_container = NodePath("../../LineContainer")
+step = 10.0
+metadata/_custom_type_script = "uid://tm1xsyh3wur2"
+
+[node name="PlayerResources" type="Node" parent="Managers"]
+script = ExtResource("5_vfwhk")
+metadata/_custom_type_script = "uid://w657rmllofrk"
+
+[node name="Tutorial" type="Node" parent="."]
+script = ExtResource("13_12ab8")
+metadata/_custom_type_script = "uid://drkgqbwhfq641"
+
+[node name="InkContainer" type="Node2D" parent="."]
+
+[node name="ObjectRegistrar" type="Node" parent="InkContainer" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "ink_container"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="LineContainer" type="Node2D" parent="."]
+
+[node name="Lumbermill" type="Sprite2D" parent="."]
+position = Vector2(631, 254)
+texture = ExtResource("6_bltja")
+
+[node name="FadeScale" type="Node" parent="Lumbermill" node_paths=PackedStringArray("target")]
+script = ExtResource("6_8nnr2")
+scale_magnitude = Vector2(1.1, 1.3)
+duration = 1.0
+target = NodePath("..")
+metadata/_custom_type_script = "uid://drilr6c5kr0la"
+
+[node name="Shadow" type="Sprite2D" parent="Lumbermill"]
+modulate = Color(0, 0, 0, 0.901961)
+show_behind_parent = true
+z_index = -100
+position = Vector2(25, 28)
+rotation = 0.0907571
+scale = Vector2(80, 64)
+skew = 1.0472
+texture = ExtResource("7_rht18")
+
+[node name="Shadow2" type="Sprite2D" parent="Lumbermill"]
+modulate = Color(0, 0, 0, 0.901961)
+show_behind_parent = true
+z_index = -100
+position = Vector2(6, 42)
+rotation = 0.0872665
+scale = Vector2(32, 32)
+skew = 1.0472
+texture = ExtResource("7_rht18")
+
+[node name="ObjectRegistrar" type="Node" parent="Lumbermill" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("../FadeScale")
+registry_name = "lumbermill_fade"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="ResourceGiver" type="Node" parent="Lumbermill" node_paths=PackedStringArray("area")]
+script = ExtResource("10_t4akp")
+resource_name = "wood"
+starting_amount = 5
+maximum_amount = 5
+area = NodePath("../Area2D")
+active = true
+metadata/_custom_type_script = "uid://dvnf0cajelsoy"
+
+[node name="ObjectRegistrar" type="Node" parent="Lumbermill/ResourceGiver" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "lumbermill_resource"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="Area2D" type="Area2D" parent="Lumbermill"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lumbermill/Area2D"]
+position = Vector2(1, 13.5)
+shape = SubResource("RectangleShape2D_vfwhk")
+
+[node name="GoldMine" type="Sprite2D" parent="."]
+position = Vector2(315, 200)
+texture = ExtResource("5_12ab8")
+
+[node name="FadeScale" type="Node" parent="GoldMine" node_paths=PackedStringArray("target")]
+script = ExtResource("6_8nnr2")
+scale_magnitude = Vector2(1.1, 1.3)
+duration = 1.0
+target = NodePath("..")
+metadata/_custom_type_script = "uid://drilr6c5kr0la"
+
+[node name="Shadow" type="Sprite2D" parent="GoldMine"]
+modulate = Color(0, 0, 0, 0.901961)
+show_behind_parent = true
+z_index = -100
+position = Vector2(25, 28)
+rotation = 0.0907571
+scale = Vector2(80, 64)
+skew = 1.0472
+texture = ExtResource("7_rht18")
+
+[node name="ObjectRegistrar" type="Node" parent="GoldMine" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("../FadeScale")
+registry_name = "goldmine_fade"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="ResourceGiver" type="Node" parent="GoldMine" node_paths=PackedStringArray("area")]
+script = ExtResource("10_t4akp")
+resource_name = "gold"
+starting_amount = 5
+maximum_amount = 5
+area = NodePath("../Area2D")
+metadata/_custom_type_script = "uid://dvnf0cajelsoy"
+
+[node name="ObjectRegistrar" type="Node" parent="GoldMine/ResourceGiver" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "goldmine_resource"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="Area2D" type="Area2D" parent="GoldMine"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoldMine/Area2D"]
+position = Vector2(1, 13.5)
+shape = SubResource("RectangleShape2D_vfwhk")
+
+[node name="CinematicKing" type="Node2D" parent="."]
+position = Vector2(464, 191)
+script = ExtResource("10_51exa")
+metadata/_custom_type_script = "uid://k8n2op1t2yt3"
+
+[node name="PathFollower" type="Node" parent="CinematicKing" node_paths=PackedStringArray("reference", "area", "bobble")]
+script = ExtResource("8_rht18")
+viewport_proportion = 1.0
+reference = NodePath("..")
+speed = 100.0
+area = NodePath("../Area2D")
+bobble = NodePath("../Bobble")
+offset = Vector2(0, -20)
+metadata/_custom_type_script = "uid://cat8fc8s1q74u"
+
+[node name="Sprites" type="Node2D" parent="CinematicKing"]
+
+[node name="Shadow" type="Sprite2D" parent="CinematicKing/Sprites"]
+modulate = Color(0, 0, 0, 0.901961)
+z_index = -100
+position = Vector2(6, 30)
+rotation = 0.0872665
+scale = Vector2(0.2, 0.1)
+skew = 1.0472
+texture = ExtResource("11_1g4j3")
+
+[node name="King" type="Sprite2D" parent="CinematicKing/Sprites"]
+texture = ExtResource("7_8nnr2")
+
+[node name="Bobble" type="Node" parent="CinematicKing" node_paths=PackedStringArray("target")]
+script = ExtResource("12_1g4j3")
+rotation_magnitude = 10.0
+duration = 0.5
+target = NodePath("../Sprites/King")
+auto_bobble = true
+metadata/_custom_type_script = "uid://bon0cijw885ro"
+
+[node name="ObjectRegistrar" type="Node" parent="CinematicKing/Bobble" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "king_bobble"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="register" type="Node" parent="CinematicKing" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "cinematic_king"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="Speak" type="Node" parent="CinematicKing" node_paths=PackedStringArray("target")]
+script = ExtResource("13_bltja")
+scale_magnitude = Vector2(1.1, 1.3)
+duration = 0.2
+target = NodePath("../Sprites/King")
+metadata/_custom_type_script = "uid://begb58aqkntr7"
+
+[node name="ObjectRegistrar" type="Node" parent="CinematicKing/Speak" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "king_speak"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="Area2D" type="Area2D" parent="CinematicKing"]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CinematicKing/Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_rht18")
+
+[node name="MessageBox" parent="." instance=ExtResource("9_0tqu0")]
+layout_mode = 1
+
+[node name="TutorialTopText" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 16
+
+[node name="TutorialText" type="RichTextLabel" parent="TutorialTopText"]
+visible = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0.87451, 0.796078, 0.74902, 1)
+theme_override_colors/font_shadow_color = Color(0.87451, 0.796078, 0.74902, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/normal_font = ExtResource("16_rht18")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center][wave]Click and drag to make a looping path through the lumbermill"
+
+[node name="ObjectRegistrar" type="Node" parent="TutorialTopText" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("../TutorialText")
+registry_name = "tutorial_text"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="LeftBar" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 128.0
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="LeftBar"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Panel" type="Panel" parent="LeftBar/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8uhw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftBar/VBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Wood" parent="LeftBar/VBoxContainer2/Panel/VBoxContainer" instance=ExtResource("21_n4xfx")]
+layout_mode = 2
+texture = ExtResource("22_shuml")
+
+[node name="Gold" parent="LeftBar/VBoxContainer2/Panel/VBoxContainer" instance=ExtResource("21_n4xfx")]
+layout_mode = 2
+resource = "gold"
+texture = ExtResource("23_47tla")
+
+[node name="Panel2" type="Panel" parent="LeftBar/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c8uhw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftBar/VBoxContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ResourceContainerWithTemp" parent="LeftBar/VBoxContainer2/Panel2/VBoxContainer" instance=ExtResource("24_2ofrh")]
+layout_mode = 2
+resource = "damage"
+texture = ExtResource("25_blrat")
+
+[node name="UIFade" type="Node" parent="LeftBar" node_paths=PackedStringArray("reference")]
+script = ExtResource("24_c8uhw")
+reference = NodePath("..")
+offset = Vector2(0, -150)
+duration = 1.0
+metadata/_custom_type_script = "uid://befbm3t0x61pp"
+
+[node name="ObjectRegistrar" type="Node" parent="LeftBar/UIFade" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "resources_fade"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"

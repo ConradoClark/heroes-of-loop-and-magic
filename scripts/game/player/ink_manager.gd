@@ -4,7 +4,8 @@ class_name InkManager
 
 @export var inks: Dictionary[String, Script]
 
-signal on_closed_shape(points: PackedVector2Array)
+signal on_closed_shape(instance_id: int, points: PackedVector2Array)
+signal on_shape_destroyed(instance_id: int)
 signal on_circle(type: String, center: Vector2, diameter: float, perfection: float)
 
 func _ready():

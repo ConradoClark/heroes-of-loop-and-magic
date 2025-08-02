@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcg0qpbcugib3"]
+
+[ext_resource type="Script" uid="uid://dv0b7g6ehesq6" path="res://scripts/ui/resource_container.gd" id="1_vv3p0"]
+[ext_resource type="Texture2D" uid="uid://bcikxyx1u82we" path="res://textures/ui/icons/wood.png" id="2_3ug3m"]
+[ext_resource type="FontFile" uid="uid://7em2blfim5tr" path="res://fonts/Julia Black Extended.ttf" id="3_ubiow"]
+[ext_resource type="Script" uid="uid://b1g6xk5hio7ty" path="res://scripts/ui/resource_text.gd" id="4_4girc"]
+
+[sub_resource type="FontVariation" id="FontVariation_shuml"]
+base_font = ExtResource("3_ubiow")
+variation_embolden = 0.5
+spacing_glyph = 3
+baseline_offset = 0.1
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ofrh"]
+font = SubResource("FontVariation_shuml")
+font_size = 36
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 2)
+
+[node name="ResourceContainer" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_vv3p0")
+resource = "wood"
+metadata/_custom_type_script = "uid://dv0b7g6ehesq6"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_3ug3m")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ResourceText" type="Label" parent="."]
+layout_mode = 2
+text = "000"
+label_settings = SubResource("LabelSettings_2ofrh")
+script = ExtResource("4_4girc")
+metadata/_custom_type_script = "uid://b1g6xk5hio7ty"
+
+[node name="Spacer" type="Control" parent="."]
+layout_mode = 2

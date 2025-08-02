@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://y2vbesdgta02"]
+
+[ext_resource type="Script" uid="uid://bocbst5kp6nhu" path="res://scripts/ui/message_box.gd" id="1_crc0q"]
+[ext_resource type="Texture2D" uid="uid://neb14kj1f6bg" path="res://textures/ui/messagebox_border.png" id="1_ryqp4"]
+[ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="3_x62yy"]
+[ext_resource type="Texture2D" uid="uid://c0b4juwa46c12" path="res://textures/sprites/ink_test.png" id="4_sfkfu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_54fh8"]
+bg_color = Color(0.666667, 0.54902, 0.580392, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 24
+border_color = Color(0.431373, 0.317647, 0.415686, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_detail = 16
+expand_margin_bottom = 16.0
+shadow_size = 4
+shadow_offset = Vector2(0, -2)
+
+[node name="MessageBox" type="Panel"]
+custom_minimum_size = Vector2(0, 128)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_54fh8")
+script = ExtResource("1_crc0q")
+offset = 135.0
+metadata/_custom_type_script = "uid://bocbst5kp6nhu"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ryqp4")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 24
+
+[node name="Label" type="RichTextLabel" parent="Margin"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0.0901961, 0.0666667, 0.101961, 1)
+theme_override_colors/font_shadow_color = Color(0.87451, 0.796078, 0.74902, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/normal_font = ExtResource("3_x62yy")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+scroll_active = false
+
+[node name="CursorMargin" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Cursor" type="TextureRect" parent="CursorMargin"]
+visible = false
+layout_mode = 2
+texture = ExtResource("4_sfkfu")
+expand_mode = 2
+stretch_mode = 5
