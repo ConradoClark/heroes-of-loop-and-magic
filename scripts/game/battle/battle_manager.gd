@@ -34,6 +34,9 @@ const FLOATING_BATTLE_NUMBER = preload("res://scenes/ui/floating/floating_battle
 const FLOATING_BLOCK = preload("res://scenes/ui/floating/floating_block.tscn")
 const SHIELD = preload("res://textures/ui/icons/shield.png")
 
+const BATTLE_THEME = preload("res://audio/songs/BattleTheme.ogg")
+const UNBROKEN_LOOP = preload("res://audio/songs/UnbrokenLoop.mp3")
+
 var is_battling: bool
 
 func _ready():
@@ -65,6 +68,8 @@ func _on_encounter_manager(obj: EncounterManager):
     
 func _on_encounter_start(enemy: EnemyResource):
     on_battle_start.emit(enemy)
+    SoundManager.pause_music()
+    SoundManager.unpause_music2()
     is_battling = true
     _load_armor()
     _load_enemy_armor(enemy)
@@ -148,6 +153,8 @@ func _enemy_defeat():
     player_resources.clear_temporary_resources()
     is_battling = false
     on_battle_end.emit(current_enemy, true)
+    SoundManager.pause_music2()
+    SoundManager.unpause_music()
     
 func _enemy_death_animate():
     if enemy_tween:
@@ -229,6 +236,8 @@ func _player_defeat():
     battle_ui.fade_out()
     is_battling = false
     on_battle_end.emit(current_enemy, false)
+    SoundManager.pause_music()
+    SoundManager.pause_music2()
     
 func _hero_death_animate():
     if hero_tween:

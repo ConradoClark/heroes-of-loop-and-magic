@@ -5,6 +5,8 @@ class_name Tutorial
 var line_drawer: LineDrawer
 var message_box: MessageBox
 var speak: Speak
+const KINGSPEAK = preload("res://audio/sfx/kingspeak.ogg")
+const NORMAL_TEXT = preload("res://audio/sfx/normal_text.ogg")
 
 func _ready():
     World.require("line_drawer", _on_line_drawer)
@@ -37,6 +39,7 @@ func play_tutorial():
     await tween.finished
     bobble.stop_bobble()
     await message_box.show_box()
+    message_box.current_voice = KINGSPEAK
     await message_box.message("My precious kingdom is falling to pieces...",_start_speak, _stop_speak)
     await message_box.message("I have no option, so I expect you to understand.",_start_speak, _stop_speak)
     await message_box.message("I'm invoking you, [wave]the God of Loop[/wave], to guide me",_start_speak, _stop_speak)
@@ -44,12 +47,14 @@ func play_tutorial():
     await message_box.hide_box()
     var lumbermill_fade = World.require("lumbermill_fade") as FadeScale
     await lumbermill_fade.start_animation()
+    message_box.current_voice = NORMAL_TEXT
     await message_box.message("This is a lumbermill. It's a building that provides wood for the king.")
     await message_box.message("Every movement ordered by you, [wave]the God of Loop[/wave], must be a closed looping shape.")
     await message_box.message("Use the Rodent Sceptre (a.k.a your mouse) to click and drag a circular shape.")
     await message_box.message("The shape must go through the lumbermill for you to collect the resource.")
     await message_box.hide_box()
     line_drawer.blocker.unblock("tutorial")
+    SoundManager.unpause_music()
     tutorial_text.text = "[center][wave]Click and drag to make a looping path through the lumbermill"
     tutorial_text.visible = true
     var example_circle = World.require("example_circle") as Node2D

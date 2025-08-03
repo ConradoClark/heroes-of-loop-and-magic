@@ -12,7 +12,7 @@ config_version=5
 
 config/name="heroes-of-loop-and-magic"
 config/tags=PackedStringArray("jam")
-run/main_scene="uid://suj5fxf2xncx"
+run/main_scene="uid://4jpbawsc5gm5"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]

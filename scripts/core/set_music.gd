@@ -6,3 +6,4 @@ class_name SetMusic
 
 func _ready():
     SoundManager.set_music(stream)
+    SoundManager.stop_music2()

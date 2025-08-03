@@ -17,6 +17,7 @@ class_name ResourceGiver
 @export_multiline var tooltip_message: String
 var area_shape: RectangleShape2D
 var current_amount: int
+@export var sfx: AudioStream
 
 var label_effect: Tween
 
@@ -200,6 +201,8 @@ func _on_unit_entered(target: Area2D):
             _show_bonus_effect.call_deferred()
     var result = resources.add_resource(resource_name, amount)
     if result:
+        if sfx:
+            SoundManager.play_sound(sfx, 0.95, 1.05)
         show_floating_amount(amount, resource_name)
     passed_through_by[target] = true
     

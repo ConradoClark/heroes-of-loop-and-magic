@@ -1,11 +1,10 @@
-[gd_scene load_steps=89 format=3 uid="uid://suj5fxf2xncx"]
+[gd_scene load_steps=95 format=3 uid="uid://suj5fxf2xncx"]
 
 [ext_resource type="Script" uid="uid://bbe3kfjxtdmgu" path="res://scripts/game/player/ink_manager.gd" id="1_lsg8u"]
 [ext_resource type="Script" uid="uid://bkei43vrao416" path="res://scripts/game/player/inks/tap_ink.gd" id="2_ep3tm"]
 [ext_resource type="Script" uid="uid://b1rr5cji2dq64" path="res://scripts/game/player/path_manager.gd" id="3_0tqu0"]
 [ext_resource type="Script" uid="uid://dvsu4kgpgqnbi" path="res://scripts/core/object_registrar.gd" id="3_51exa"]
 [ext_resource type="Script" uid="uid://tm1xsyh3wur2" path="res://scripts/game/player/line_drawer.gd" id="4_1g4j3"]
-[ext_resource type="Texture2D" uid="uid://djgkmmd4blsf6" path="res://textures/sprites/gold_mine.png" id="5_12ab8"]
 [ext_resource type="Script" uid="uid://w657rmllofrk" path="res://scripts/game/player/player_resources.gd" id="5_vfwhk"]
 [ext_resource type="Script" uid="uid://drilr6c5kr0la" path="res://scripts/game/effects/fade_scale.gd" id="6_8nnr2"]
 [ext_resource type="Texture2D" uid="uid://3cgdf2ahmbcc" path="res://textures/sprites/lumber_mill.png" id="6_bltja"]
@@ -42,9 +41,12 @@
 [ext_resource type="PackedScene" uid="uid://bjlr2cljr2l4h" path="res://scenes/ui/resource_container_2.tscn" id="24_2ofrh"]
 [ext_resource type="Script" uid="uid://befbm3t0x61pp" path="res://scripts/ui/ui_fade.gd" id="24_c8uhw"]
 [ext_resource type="Texture2D" uid="uid://cw1h58be0n332" path="res://textures/ui/icons/sword.png" id="25_blrat"]
-[ext_resource type="Texture2D" uid="uid://dcehbad4fs54g" path="res://textures/sprites/medical_tent.png" id="25_vouot"]
+[ext_resource type="AudioStream" uid="uid://bf1cill7u3fuh" path="res://audio/sfx/wood_pick.ogg" id="25_fn1jp"]
 [ext_resource type="Texture2D" uid="uid://btffkwmph60dm" path="res://textures/ui/icons/shield.png" id="26_blrat"]
+[ext_resource type="PackedScene" uid="uid://qxdyqfsnrcxv" path="res://scenes/game/objects/gold_mine.tscn" id="28_fn1jp"]
+[ext_resource type="PackedScene" uid="uid://cf26grl7lstv8" path="res://scenes/game/objects/medical_tent.tscn" id="29_pbgw6"]
 [ext_resource type="Shader" uid="uid://brimnfckmklx7" path="res://shaders/general/smooth_outline.gdshader" id="30_lw6g5"]
+[ext_resource type="Script" uid="uid://b1ngbcapijs1e" path="res://scripts/game/objects/building.gd" id="30_pbgw6"]
 [ext_resource type="Texture2D" uid="uid://be7qqplgndve8" path="res://textures/ui/meter_part.png" id="31_ac7wk"]
 [ext_resource type="Texture2D" uid="uid://cx0fm45h7nbdy" path="res://textures/sprites/monsters/slime.png" id="32_riqf5"]
 [ext_resource type="Script" uid="uid://d1h1otuuiy32v" path="res://scripts/game/objects/encounter_mark.gd" id="33_uryex"]
@@ -64,6 +66,10 @@
 [ext_resource type="Resource" uid="uid://beqx5xheynemj" path="res://data/rewards/apple.tres" id="45_uxcfi"]
 [ext_resource type="Script" uid="uid://cpdy60s0lhyn7" path="res://scripts/ui/upgrades_ui.gd" id="46_wp8yl"]
 [ext_resource type="PackedScene" uid="uid://db7kkljlqqtda" path="res://scenes/ui/tooltip.tscn" id="57_hh7hg"]
+[ext_resource type="Script" uid="uid://dgisk3eg428gh" path="res://scripts/core/set_music.gd" id="65_8peel"]
+[ext_resource type="AudioStream" uid="uid://c0rhrc4tg5ny5" path="res://audio/songs/UnbrokenLoop.mp3" id="66_2eusu"]
+[ext_resource type="Script" uid="uid://butwt4eoiorwc" path="res://scripts/core/set_music2.gd" id="66_8peel"]
+[ext_resource type="AudioStream" uid="uid://bgdfc3o06vgq" path="res://audio/songs/BattleTheme.ogg" id="67_0smpp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfwhk"]
 size = Vector2(90, 63.5)
@@ -387,7 +393,7 @@ metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 [node name="CircleExample" type="Sprite2D" parent="LineContainer"]
 visible = false
 modulate = Color(1, 1, 1, 0.188235)
-position = Vector2(616, 333)
+position = Vector2(616, 321)
 texture = ExtResource("15_8hnbn")
 
 [node name="ObjectRegistrar" type="Node" parent="LineContainer/CircleExample" node_paths=PackedStringArray("object")]
@@ -400,6 +406,8 @@ metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 [node name="Lumbermill" type="Sprite2D" parent="."]
 position = Vector2(631, 254)
 texture = ExtResource("6_bltja")
+script = ExtResource("30_pbgw6")
+metadata/_custom_type_script = "uid://b1ngbcapijs1e"
 
 [node name="FadeScale" type="Node" parent="Lumbermill" node_paths=PackedStringArray("target")]
 script = ExtResource("6_8nnr2")
@@ -448,6 +456,7 @@ refresh_delay = 10.0
 progress_border = NodePath("../ProgressBorder")
 progress_bar = NodePath("../ProgressBorder/MarginContainer/ProgressBar")
 tooltip_message = "[center]Lumbermill gives [color=d5f66e]1[img=20x20]uid://bcikxyx1u82we[/img]"
+sfx = ExtResource("25_fn1jp")
 metadata/_custom_type_script = "uid://dvnf0cajelsoy"
 
 [node name="ObjectRegistrar" type="Node" parent="Lumbermill/ResourceGiver" node_paths=PackedStringArray("object")]
@@ -504,200 +513,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 color = Color(0.603922, 0.905882, 0.788235, 1)
 
-[node name="GoldMine" type="Sprite2D" parent="."]
+[node name="GoldMine" parent="." instance=ExtResource("28_fn1jp")]
 position = Vector2(368, 195)
-texture = ExtResource("5_12ab8")
 
-[node name="FadeScale" type="Node" parent="GoldMine" node_paths=PackedStringArray("target")]
-script = ExtResource("6_8nnr2")
-scale_magnitude = Vector2(1.1, 1.3)
-duration = 1.0
-target = NodePath("..")
-metadata/_custom_type_script = "uid://drilr6c5kr0la"
-
-[node name="Shadow" type="Sprite2D" parent="GoldMine"]
-modulate = Color(0, 0, 0, 0.901961)
-show_behind_parent = true
-z_index = -100
-position = Vector2(25, 28)
-rotation = 0.0907571
-scale = Vector2(80, 64)
-skew = 1.0472
-texture = ExtResource("7_rht18")
-
-[node name="ObjectRegistrar" type="Node" parent="GoldMine" node_paths=PackedStringArray("object")]
-script = ExtResource("3_51exa")
-object = NodePath("../FadeScale")
-registry_name = "goldmine_fade"
-world = true
-metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
-
-[node name="ResourceGiver" type="Node" parent="GoldMine" node_paths=PackedStringArray("area", "label", "progress_border", "progress_bar")]
-script = ExtResource("10_t4akp")
-source_name = "gold_mine"
-resource_name = "gold"
-starting_amount = 5
-maximum_amount = 5
-area = NodePath("../Area2D")
-label = NodePath("../Label")
-refresh_delay = 15.0
-progress_border = NodePath("../ProgressBorder")
-progress_bar = NodePath("../ProgressBorder/MarginContainer/ProgressBar")
-tooltip_message = "[center]Gold Mine gives [color=d5f66e]1[img=20x20]uid://ckmchbj500jke[/img]"
-metadata/_custom_type_script = "uid://dvnf0cajelsoy"
-
-[node name="ObjectRegistrar" type="Node" parent="GoldMine/ResourceGiver" node_paths=PackedStringArray("object")]
-script = ExtResource("3_51exa")
-object = NodePath("..")
-registry_name = "goldmine_resource"
-world = true
-metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
-
-[node name="Area2D" type="Area2D" parent="GoldMine"]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GoldMine/Area2D"]
-position = Vector2(1, 13.5)
-shape = SubResource("RectangleShape2D_vfwhk")
-
-[node name="Label" type="Label" parent="GoldMine"]
-custom_minimum_size = Vector2(128, 0)
-offset_left = -66.0
-offset_top = -61.0
-offset_right = 62.0
-offset_bottom = -24.0
-pivot_offset = Vector2(64, 18)
-text = "5/5"
-label_settings = ExtResource("13_81o5c")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ProgressBorder" type="Panel" parent="GoldMine"]
-offset_left = -41.0
-offset_top = -28.0
-offset_right = 39.0
-offset_bottom = -20.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_81o5c")
-
-[node name="MarginContainer" type="MarginContainer" parent="GoldMine/ProgressBorder"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 1
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 1
-
-[node name="ProgressBar" type="ColorRect" parent="GoldMine/ProgressBorder/MarginContainer"]
-show_behind_parent = true
-custom_minimum_size = Vector2(75, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-color = Color(0.603922, 0.905882, 0.788235, 1)
-
-[node name="MedicalTent" type="Sprite2D" parent="."]
+[node name="MedicalTent" parent="." instance=ExtResource("29_pbgw6")]
 position = Vector2(234, 305)
-texture = ExtResource("25_vouot")
-
-[node name="FadeScale" type="Node" parent="MedicalTent" node_paths=PackedStringArray("target")]
-script = ExtResource("6_8nnr2")
-scale_magnitude = Vector2(1.1, 1.3)
-duration = 1.0
-target = NodePath("..")
-metadata/_custom_type_script = "uid://drilr6c5kr0la"
-
-[node name="Shadow" type="Sprite2D" parent="MedicalTent"]
-modulate = Color(0, 0, 0, 0.901961)
-show_behind_parent = true
-z_index = -100
-position = Vector2(26, 24)
-rotation = 0.0907571
-scale = Vector2(80, 64)
-skew = 1.0472
-texture = ExtResource("7_rht18")
-
-[node name="ObjectRegistrar" type="Node" parent="MedicalTent" node_paths=PackedStringArray("object")]
-script = ExtResource("3_51exa")
-object = NodePath("../FadeScale")
-registry_name = "medicaltent_fade"
-world = true
-metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
-
-[node name="ResourceGiver" type="Node" parent="MedicalTent" node_paths=PackedStringArray("area", "label", "progress_border", "progress_bar")]
-script = ExtResource("10_t4akp")
-source_name = "medical_tent"
-resource_name = "health"
-starting_amount = 5
-maximum_amount = 5
-area = NodePath("../Area2D")
-label = NodePath("../Label")
-refresh_delay = 15.0
-progress_border = NodePath("../ProgressBorder")
-progress_bar = NodePath("../ProgressBorder/MarginContainer/ProgressBar")
-cost = Dictionary[String, int]({
-"gold": 1
-})
-tooltip_message = "[center]Medical Tent gives [color=d5f66e]1[img=20x20]uid://h6ftcoavsi6h[/img][/color] for [color=d5f66e]1[img=20x20]uid://ckmchbj500jke[/img]"
-metadata/_custom_type_script = "uid://dvnf0cajelsoy"
-
-[node name="ObjectRegistrar" type="Node" parent="MedicalTent/ResourceGiver" node_paths=PackedStringArray("object")]
-script = ExtResource("3_51exa")
-object = NodePath("..")
-registry_name = "health_resource"
-world = true
-metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
-
-[node name="Area2D" type="Area2D" parent="MedicalTent"]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MedicalTent/Area2D"]
-position = Vector2(3, 16)
-shape = SubResource("RectangleShape2D_vfwhk")
-
-[node name="Label" type="Label" parent="MedicalTent"]
-custom_minimum_size = Vector2(128, 0)
-offset_left = -66.0
-offset_top = -61.0
-offset_right = 62.0
-offset_bottom = -24.0
-pivot_offset = Vector2(64, 18)
-text = "5/5"
-label_settings = ExtResource("13_81o5c")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ProgressBorder" type="Panel" parent="MedicalTent"]
-offset_left = -41.0
-offset_top = -28.0
-offset_right = 39.0
-offset_bottom = -20.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_81o5c")
-
-[node name="MarginContainer" type="MarginContainer" parent="MedicalTent/ProgressBorder"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 1
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 1
-
-[node name="ProgressBar" type="ColorRect" parent="MedicalTent/ProgressBorder/MarginContainer"]
-show_behind_parent = true
-custom_minimum_size = Vector2(75, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-color = Color(0.603922, 0.905882, 0.788235, 1)
 
 [node name="CinematicKing" type="Node2D" parent="."]
 position = Vector2(464, 191)
@@ -1635,3 +1455,13 @@ duration = 1.0
 metadata/_custom_type_script = "uid://n1qdvck6b2a5"
 
 [node name="ScreenTransition" parent="." instance=ExtResource("42_kqish")]
+
+[node name="SetMusic" type="Node" parent="."]
+script = ExtResource("65_8peel")
+stream = ExtResource("66_2eusu")
+metadata/_custom_type_script = "uid://dgisk3eg428gh"
+
+[node name="SetMusic2" type="Node" parent="."]
+script = ExtResource("66_8peel")
+stream = ExtResource("67_0smpp")
+metadata/_custom_type_script = "uid://butwt4eoiorwc"

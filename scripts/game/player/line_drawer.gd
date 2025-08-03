@@ -13,7 +13,8 @@ var moving_line: MarkerLine
 var tolerance: float = .50
 var ink_manager: InkManager
 var blocker: Blocker
-
+const LOOP = preload("res://audio/sfx/loop.ogg")
+var loop_stream: AudioStreamPlayer
 func _ready():
     line_prefab = load(line_template)
     blocker = Blocker.new()
@@ -33,8 +34,11 @@ func _input(event: InputEvent) -> void:
             pressed = event.pressed
         else: return
         if pressed:
+            loop_stream = SoundManager.play_sound(LOOP)
             _spawn_line(event.position)
         elif event.is_released():
+            loop_stream.stop()
+            SoundManager.audio_finished(loop_stream)
             var is_closed = _detect_closed_shape()
             if is_closed:
                 if moving_line:
