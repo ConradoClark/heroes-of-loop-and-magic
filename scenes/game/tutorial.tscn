@@ -889,6 +889,7 @@ theme_override_constants/margin_right = 16
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 4
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="EncounterMeter/CenterContainer"]
 layout_mode = 1
@@ -902,7 +903,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="SkeletonEncounter2" type="TextureRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
+[node name="GolemEncounter" type="TextureRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 z_index = 1
 material = SubResource("ShaderMaterial_uryex")
 custom_minimum_size = Vector2(0, 33)
@@ -912,9 +913,10 @@ expand_mode = 2
 stretch_mode = 5
 script = ExtResource("33_uryex")
 enemy_stats = ExtResource("44_01spn")
+tooltip_message = "Sturdy and heavy. Prepare your defenses!"
 metadata/_custom_type_script = "uid://d1h1otuuiy32v"
 
-[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters/SkeletonEncounter2"]
+[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters/GolemEncounter"]
 modulate = Color(0.815686, 0.254902, 0.32549, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(32, 64)
@@ -945,6 +947,7 @@ expand_mode = 2
 stretch_mode = 5
 script = ExtResource("33_uryex")
 enemy_stats = ExtResource("39_7mjhv")
+tooltip_message = "Knows how to spar, yet has no armor."
 metadata/_custom_type_script = "uid://d1h1otuuiy32v"
 
 [node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters/SkeletonEncounter"]
@@ -982,6 +985,7 @@ expand_mode = 2
 stretch_mode = 5
 script = ExtResource("33_uryex")
 enemy_stats = ExtResource("35_aj8vu")
+tooltip_message = "Is this really a monster? Weak."
 metadata/_custom_type_script = "uid://d1h1otuuiy32v"
 
 [node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters/SlimeEncounter"]
@@ -1018,6 +1022,7 @@ axis_stretch_vertical = 2
 
 [node name="Control" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="KingMarker" type="TextureRect" parent="EncounterMeter/CenterContainer/MarginContainer/Control"]
 z_index = 1
@@ -1029,6 +1034,7 @@ offset_top = 238.0
 offset_right = 57.0
 offset_bottom = 270.0
 size_flags_horizontal = 4
+mouse_filter = 2
 texture = ExtResource("7_8nnr2")
 expand_mode = 1
 stretch_mode = 5

@@ -3,7 +3,7 @@ extends Node
 class_name EncounterManager
 
 @export var king_marker: Control
-@export var king_speed: float = 1.75
+@export var king_speed: float = 1.4
 @export var min_y: float
 @export var max_y: float
 
@@ -46,3 +46,4 @@ func start_encounter(enemy: EnemyResource):
 func end_encounter():
     set_active(true)
     path_manager.unpause_paths()
+    on_encounter_end.emit()

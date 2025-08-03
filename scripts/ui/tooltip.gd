@@ -23,7 +23,7 @@ func hide_tip(source: int):
 
 func _process(delta: float) -> void:
     if not visible: return
-    var screen_size = get_viewport().size
+    var screen_size = Vector2(960,540)
     var mouse_pos = get_global_mouse_position() 
-    var pos = Vector2(-15,-30) if mouse_pos.x > (screen_size.x*.5) else Vector2(15,-30)
+    var pos = Vector2(-120,-60) if mouse_pos.x > (screen_size.x*.5) else Vector2(-30,-60)
     global_position = mouse_pos + pos

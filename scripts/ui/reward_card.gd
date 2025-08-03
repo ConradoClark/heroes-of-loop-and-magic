@@ -45,6 +45,7 @@ func _input(event: InputEvent):
             _select_reward()
             
 func _select_reward():
+    if reward_manager.selected: return
     selected = true
     await _animate_select()
     if reward_manager and reward:

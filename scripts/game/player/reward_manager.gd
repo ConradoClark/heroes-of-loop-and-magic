@@ -15,6 +15,7 @@ var player_resources: PlayerResources
 var floating_manager: FloatingManager
 signal on_reward_chosen
 signal on_reward_skip
+var selected:bool
 
 func _ready():
     World.register("reward_manager", self)
@@ -32,6 +33,8 @@ func _on_skip():
     open = false
     
 func select_reward(reward: RewardResource):
+    if selected: return
+    selected = true
     if reward is EquipmentResource:
         player_resources.equip(reward)
     if reward is AddResourceReward:
@@ -66,4 +69,5 @@ func _load_reward(reward: RewardResource):
 
 func show_reward_screen(enemy: EnemyResource):
     open = true
+    selected = false
     load_rewards(enemy)

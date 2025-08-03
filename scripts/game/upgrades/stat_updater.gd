@@ -17,4 +17,4 @@ func _apply():
     if parameters.has("armor"):
         player_resources.add_resource("armor", parameters["armor"])
     if parameters.has("gold_bonus"):
-        player_resources.bonus_by_source["gold"] += parameters["gold_bonus"]
+        player_resources.loop_bonus_max["gold"] += parameters["gold_bonus"]
