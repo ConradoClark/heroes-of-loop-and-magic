@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://suj5fxf2xncx"]
+[gd_scene load_steps=76 format=3 uid="uid://suj5fxf2xncx"]
 
 [ext_resource type="Script" uid="uid://bbe3kfjxtdmgu" path="res://scripts/game/player/ink_manager.gd" id="1_lsg8u"]
 [ext_resource type="Script" uid="uid://bkei43vrao416" path="res://scripts/game/player/inks/tap_ink.gd" id="2_ep3tm"]
@@ -9,33 +9,266 @@
 [ext_resource type="Script" uid="uid://w657rmllofrk" path="res://scripts/game/player/player_resources.gd" id="5_vfwhk"]
 [ext_resource type="Script" uid="uid://drilr6c5kr0la" path="res://scripts/game/effects/fade_scale.gd" id="6_8nnr2"]
 [ext_resource type="Texture2D" uid="uid://3cgdf2ahmbcc" path="res://textures/sprites/lumber_mill.png" id="6_bltja"]
+[ext_resource type="Script" uid="uid://twh7urwm84kn" path="res://scripts/ui/floating/floating_manager.gd" id="6_fun36"]
+[ext_resource type="Resource" uid="uid://n5e4mvylc6ui" path="res://data/rewards/steel_sword.tres" id="6_sjgf8"]
+[ext_resource type="Resource" uid="uid://b2xf550usv0u3" path="res://data/rewards/wooden_shield.tres" id="7_6v7of"]
 [ext_resource type="Texture2D" uid="uid://ck7hwlogswxf5" path="res://textures/sprites/knight.png" id="7_8nnr2"]
+[ext_resource type="Script" uid="uid://d1fcig88f0i2g" path="res://scripts/game/player/encounter_manager.gd" id="7_ac7wk"]
 [ext_resource type="Texture2D" uid="uid://dg8m1gbvevld5" path="res://textures/ui/white.png" id="7_rht18"]
 [ext_resource type="Script" uid="uid://cat8fc8s1q74u" path="res://scripts/game/player/path_follower.gd" id="8_rht18"]
+[ext_resource type="Script" uid="uid://drvg83o7gp7im" path="res://scripts/game/battle/battle_manager.gd" id="8_u3pxu"]
 [ext_resource type="PackedScene" uid="uid://y2vbesdgta02" path="res://scenes/ui/message_box.tscn" id="9_0tqu0"]
+[ext_resource type="Script" uid="uid://da5oj42j6s5tk" path="res://scripts/game/player/win_lose_conditions.gd" id="9_rfh6t"]
 [ext_resource type="Script" uid="uid://k8n2op1t2yt3" path="res://scripts/core/actor.gd" id="10_51exa"]
+[ext_resource type="Script" uid="uid://dh1oo8eybsvuw" path="res://scripts/game/player/reward_manager.gd" id="10_88lfo"]
 [ext_resource type="Script" uid="uid://dvnf0cajelsoy" path="res://scripts/game/objects/resource_giver.gd" id="10_t4akp"]
 [ext_resource type="Texture2D" uid="uid://xua4m7acgw41" path="res://textures/sprites/white_circle_4x.png" id="11_1g4j3"]
 [ext_resource type="Script" uid="uid://bon0cijw885ro" path="res://scripts/game/effects/bobble.gd" id="12_1g4j3"]
 [ext_resource type="Script" uid="uid://drkgqbwhfq641" path="res://scripts/cinematics/tutorial.gd" id="13_12ab8"]
+[ext_resource type="LabelSettings" uid="uid://c8xe6xfqgrla6" path="res://presets/label_settings/resource_counter.tres" id="13_81o5c"]
 [ext_resource type="Script" uid="uid://begb58aqkntr7" path="res://scripts/game/effects/speak.gd" id="13_bltja"]
 [ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="16_rht18"]
 [ext_resource type="PackedScene" uid="uid://bcg0qpbcugib3" path="res://scenes/ui/resource_container.tscn" id="21_n4xfx"]
 [ext_resource type="Texture2D" uid="uid://bcikxyx1u82we" path="res://textures/ui/icons/wood.png" id="22_shuml"]
+[ext_resource type="Texture2D" uid="uid://c8gj5sf66fko5" path="res://textures/sprites/weapons/steel_sword.png" id="23_40fav"]
 [ext_resource type="Texture2D" uid="uid://ckmchbj500jke" path="res://textures/ui/icons/gold.png" id="23_47tla"]
+[ext_resource type="Texture2D" uid="uid://ccfc5rv1xhjpf" path="res://textures/sprites/shields/wooden_shield.png" id="24_2l3jm"]
 [ext_resource type="PackedScene" uid="uid://bjlr2cljr2l4h" path="res://scenes/ui/resource_container_2.tscn" id="24_2ofrh"]
 [ext_resource type="Script" uid="uid://befbm3t0x61pp" path="res://scripts/ui/ui_fade.gd" id="24_c8uhw"]
 [ext_resource type="Texture2D" uid="uid://cw1h58be0n332" path="res://textures/ui/icons/sword.png" id="25_blrat"]
+[ext_resource type="Texture2D" uid="uid://btffkwmph60dm" path="res://textures/ui/icons/shield.png" id="26_blrat"]
+[ext_resource type="Shader" uid="uid://brimnfckmklx7" path="res://shaders/general/smooth_outline.gdshader" id="30_lw6g5"]
+[ext_resource type="Texture2D" uid="uid://be7qqplgndve8" path="res://textures/ui/meter_part.png" id="31_ac7wk"]
+[ext_resource type="Texture2D" uid="uid://cx0fm45h7nbdy" path="res://textures/sprites/monsters/slime.png" id="32_riqf5"]
+[ext_resource type="Script" uid="uid://d1h1otuuiy32v" path="res://scripts/game/objects/encounter_mark.gd" id="33_uryex"]
+[ext_resource type="Resource" uid="uid://crgoj3iq81jyw" path="res://data/enemies/slime.tres" id="35_aj8vu"]
+[ext_resource type="Script" uid="uid://n1qdvck6b2a5" path="res://scripts/ui/ui_scale.gd" id="35_mbqar"]
+[ext_resource type="Shader" uid="uid://blewk38klwe4g" path="res://shaders/general/color_flash.gdshader" id="35_n6wyj"]
+[ext_resource type="Shader" uid="uid://bsgnycasq2l1w" path="res://shaders/general/crt.gdshader" id="36_6c8it"]
+[ext_resource type="Script" uid="uid://boebvigouefa7" path="res://scripts/ui/enemy_health.gd" id="36_53uw1"]
+[ext_resource type="Texture2D" uid="uid://dpwfqnnxe5d47" path="res://textures/sprites/monsters/skeleton.png" id="37_dtcuh"]
+[ext_resource type="Resource" uid="uid://dy0er8has5qrk" path="res://data/enemies/skeleton.tres" id="39_7mjhv"]
+[ext_resource type="Script" uid="uid://bkykjgchy4w6s" path="res://scripts/ui/player_health.gd" id="40_v16bn"]
+[ext_resource type="PackedScene" uid="uid://r5rys5031rbl" path="res://scenes/ui/screen_transition.tscn" id="42_kqish"]
+[ext_resource type="PackedScene" uid="uid://bgfmloegobr70" path="res://scenes/ui/reward_template.tscn" id="44_24lty"]
+[ext_resource type="Resource" uid="uid://beqx5xheynemj" path="res://data/rewards/apple.tres" id="45_uxcfi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfwhk"]
-size = Vector2(90, 75)
+size = Vector2(90, 80)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rht18"]
-radius = 18.78
-height = 67.06
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81o5c"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.00392157, 0.0352941, 0.0392157, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40fav"]
+shader = ExtResource("30_lw6g5")
+shader_parameter/Smooth = true
+shader_parameter/width = 1.0
+shader_parameter/outline_color = Color(0, 0, 0, 0.298039)
+shader_parameter/pixel_size = 1
+shader_parameter/width_speed = 1.0
+shader_parameter/replace_color = 0.0
+shader_parameter/color_repl = Color(0, 0, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fun36"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8uhw"]
 bg_color = Color(0.431373, 0.317647, 0.415686, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uryex"]
+shader = ExtResource("30_lw6g5")
+shader_parameter/Smooth = true
+shader_parameter/width = 2.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/pixel_size = 1
+shader_parameter/width_speed = 1.0
+shader_parameter/replace_color = 1.0
+shader_parameter/color_repl = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_riqf5"]
+shader = ExtResource("30_lw6g5")
+shader_parameter/Smooth = true
+shader_parameter/width = 2.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/pixel_size = 1
+shader_parameter/width_speed = 1.0
+shader_parameter/replace_color = 0.0
+shader_parameter/color_repl = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uryex"]
+bg_color = Color(0.0134498, 1.5823e-05, 0.0497404, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v16bn"]
+shader = ExtResource("35_n6wyj")
+shader_parameter/color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqish"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.87451, 0.796078, 0.74902, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6wyj"]
+shader = ExtResource("36_6c8it")
+shader_parameter/scanline_color = Color(0.267168, 0.551561, 0, 1)
+shader_parameter/flicker_color = Color(0.622978, 0.857412, 0.426287, 1)
+shader_parameter/scanlines_count = 10.0
+shader_parameter/scanlines_intensity = 0.2
+shader_parameter/flicker_speed = 30.0
+shader_parameter/flicker_intensity = 0.025
+shader_parameter/color_offset = 1.5
+shader_parameter/blur = 0.15
+
+[sub_resource type="LabelSettings" id="LabelSettings_81o5c"]
+font = ExtResource("16_rht18")
+font_size = 36
+font_color = Color(0.87451, 0.796078, 0.74902, 1)
+outline_size = 16
+outline_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53uw1"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.87451, 0.796078, 0.74902, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfh6t"]
+bg_color = Color(0.4, 0.176471, 0.223529, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.815686, 0.254902, 0.32549, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_88lfo"]
+font = ExtResource("16_rht18")
+font_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88lfo"]
+content_margin_top = 8.0
+bg_color = Color(0.290196, 0.478431, 0.278431, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24lty"]
+content_margin_top = 8.0
+bg_color = Color(0.552941, 0.756863, 0.337255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0627451, 0.0509804, 0.054902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxcfi"]
+content_margin_top = 8.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0627451, 0.0509804, 0.054902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg0v5"]
+content_margin_top = 8.0
+bg_color = Color(0.290196, 0.478431, 0.278431, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0627451, 0.0509804, 0.054902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40fav"]
+content_margin_top = 8.0
+bg_color = Color(0.286275, 0.333333, 0.533333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0627451, 0.0509804, 0.054902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l3jm"]
+content_margin_top = 8.0
+bg_color = Color(0.376471, 0.658824, 0.690196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0627451, 0.0509804, 0.054902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjgf8"]
+content_margin_top = 8.0
+bg_color = Color(0.286275, 0.333333, 0.533333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0627451, 0.0509804, 0.054902, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6v7of"]
+bg_color = Color(0.431373, 0.317647, 0.415686, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.666667, 0.54902, 0.580392, 1)
 corner_radius_top_left = 32
 corner_radius_top_right = 32
 corner_radius_bottom_right = 32
@@ -71,7 +304,42 @@ metadata/_custom_type_script = "uid://tm1xsyh3wur2"
 
 [node name="PlayerResources" type="Node" parent="Managers"]
 script = ExtResource("5_vfwhk")
+weapon = ExtResource("6_sjgf8")
+shield = ExtResource("7_6v7of")
 metadata/_custom_type_script = "uid://w657rmllofrk"
+
+[node name="FloatingManager" type="Node" parent="Managers" node_paths=PackedStringArray("floating_container")]
+script = ExtResource("6_fun36")
+floating_container = NodePath("../../TopLayer/FloatingContainer")
+metadata/_custom_type_script = "uid://twh7urwm84kn"
+
+[node name="EncounterManager" type="Node" parent="Managers" node_paths=PackedStringArray("king_marker")]
+script = ExtResource("7_ac7wk")
+king_marker = NodePath("../../EncounterMeter/Control/KingMarker")
+metadata/_custom_type_script = "uid://d1fcig88f0i2g"
+
+[node name="BattleManager" type="Node" parent="Managers" node_paths=PackedStringArray("battle_ui", "blackout", "hero_texture", "enemy_texture")]
+script = ExtResource("8_u3pxu")
+battle_ui = NodePath("../../BattleCanvas/MarginContainer/UIScale")
+blackout = NodePath("../../BattleCanvas/Blackout")
+hero_texture = NodePath("../../BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer/HeroTexture")
+enemy_texture = NodePath("../../BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture")
+damage_color = Color(1, 0.862745, 0.415686, 0.6)
+metadata/_custom_type_script = "uid://drvg83o7gp7im"
+
+[node name="WinLoseConditions" type="Node" parent="Managers" node_paths=PackedStringArray("defeat_panel", "retry_button", "level_select_buttons")]
+script = ExtResource("9_rfh6t")
+defeat_panel = NodePath("../../TopLayer/Defeat/UIScale")
+retry_button = NodePath("../../TopLayer/Defeat/Panel/MarginContainer/VBoxContainer/HBoxContainer/Retry")
+level_select_buttons = [NodePath("../../TopLayer/Defeat/Panel/MarginContainer/VBoxContainer/HBoxContainer/LevelSelect")]
+metadata/_custom_type_script = "uid://da5oj42j6s5tk"
+
+[node name="RewardManager" type="Node" parent="Managers" node_paths=PackedStringArray("rewards_slot", "rewards_ui", "skip_button")]
+script = ExtResource("10_88lfo")
+rewards_slot = NodePath("../../TopLayer/Rewards/Panel/MarginContainer/VBoxContainer/Rewards")
+rewards_ui = NodePath("../../TopLayer/Rewards/UIScale")
+skip_button = NodePath("../../TopLayer/Rewards/Panel/MarginContainer/VBoxContainer/SkipButton")
+metadata/_custom_type_script = "uid://dh1oo8eybsvuw"
 
 [node name="Tutorial" type="Node" parent="."]
 script = ExtResource("13_12ab8")
@@ -126,13 +394,18 @@ registry_name = "lumbermill_fade"
 world = true
 metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
-[node name="ResourceGiver" type="Node" parent="Lumbermill" node_paths=PackedStringArray("area")]
+[node name="ResourceGiver" type="Node" parent="Lumbermill" node_paths=PackedStringArray("area", "label", "progress_border", "progress_bar")]
 script = ExtResource("10_t4akp")
+source_name = "lumbermill"
 resource_name = "wood"
 starting_amount = 5
 maximum_amount = 5
 area = NodePath("../Area2D")
 active = true
+label = NodePath("../Label")
+refresh_delay = 10.0
+progress_border = NodePath("../ProgressBorder")
+progress_bar = NodePath("../ProgressBorder/MarginContainer/ProgressBar")
 metadata/_custom_type_script = "uid://dvnf0cajelsoy"
 
 [node name="ObjectRegistrar" type="Node" parent="Lumbermill/ResourceGiver" node_paths=PackedStringArray("object")]
@@ -147,11 +420,50 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lumbermill/Area2D"]
-position = Vector2(1, 13.5)
+position = Vector2(1, 16)
 shape = SubResource("RectangleShape2D_vfwhk")
 
+[node name="Label" type="Label" parent="Lumbermill"]
+custom_minimum_size = Vector2(128, 0)
+offset_left = -66.0
+offset_top = -59.0
+offset_right = 62.0
+offset_bottom = -22.0
+pivot_offset = Vector2(64, 18)
+text = "5/5"
+label_settings = ExtResource("13_81o5c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBorder" type="Panel" parent="Lumbermill"]
+offset_left = -41.0
+offset_top = -26.0
+offset_right = 39.0
+offset_bottom = -18.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_81o5c")
+
+[node name="MarginContainer" type="MarginContainer" parent="Lumbermill/ProgressBorder"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 1
+
+[node name="ProgressBar" type="ColorRect" parent="Lumbermill/ProgressBorder/MarginContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.603922, 0.905882, 0.788235, 1)
+
 [node name="GoldMine" type="Sprite2D" parent="."]
-position = Vector2(315, 200)
+position = Vector2(368, 195)
 texture = ExtResource("5_12ab8")
 
 [node name="FadeScale" type="Node" parent="GoldMine" node_paths=PackedStringArray("target")]
@@ -178,12 +490,17 @@ registry_name = "goldmine_fade"
 world = true
 metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
-[node name="ResourceGiver" type="Node" parent="GoldMine" node_paths=PackedStringArray("area")]
+[node name="ResourceGiver" type="Node" parent="GoldMine" node_paths=PackedStringArray("area", "label", "progress_border", "progress_bar")]
 script = ExtResource("10_t4akp")
+source_name = "gold_mine"
 resource_name = "gold"
 starting_amount = 5
 maximum_amount = 5
 area = NodePath("../Area2D")
+label = NodePath("../Label")
+refresh_delay = 15.0
+progress_border = NodePath("../ProgressBorder")
+progress_bar = NodePath("../ProgressBorder/MarginContainer/ProgressBar")
 metadata/_custom_type_script = "uid://dvnf0cajelsoy"
 
 [node name="ObjectRegistrar" type="Node" parent="GoldMine/ResourceGiver" node_paths=PackedStringArray("object")]
@@ -200,6 +517,45 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoldMine/Area2D"]
 position = Vector2(1, 13.5)
 shape = SubResource("RectangleShape2D_vfwhk")
+
+[node name="Label" type="Label" parent="GoldMine"]
+custom_minimum_size = Vector2(128, 0)
+offset_left = -66.0
+offset_top = -61.0
+offset_right = 62.0
+offset_bottom = -24.0
+pivot_offset = Vector2(64, 18)
+text = "5/5"
+label_settings = ExtResource("13_81o5c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBorder" type="Panel" parent="GoldMine"]
+offset_left = -41.0
+offset_top = -28.0
+offset_right = 39.0
+offset_bottom = -20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_81o5c")
+
+[node name="MarginContainer" type="MarginContainer" parent="GoldMine/ProgressBorder"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 1
+
+[node name="ProgressBar" type="ColorRect" parent="GoldMine/ProgressBorder/MarginContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.603922, 0.905882, 0.788235, 1)
 
 [node name="CinematicKing" type="Node2D" parent="."]
 position = Vector2(464, 191)
@@ -229,6 +585,32 @@ texture = ExtResource("11_1g4j3")
 
 [node name="King" type="Sprite2D" parent="CinematicKing/Sprites"]
 texture = ExtResource("7_8nnr2")
+
+[node name="Weapon" type="Sprite2D" parent="CinematicKing/Sprites/King"]
+material = SubResource("ShaderMaterial_40fav")
+position = Vector2(22, 5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("23_40fav")
+
+[node name="ObjectRegistrar" type="Node" parent="CinematicKing/Sprites/King/Weapon" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "hero_weapon"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="Shield" type="Sprite2D" parent="CinematicKing/Sprites/King"]
+material = SubResource("ShaderMaterial_40fav")
+position = Vector2(-14, 12)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("24_2l3jm")
+
+[node name="ObjectRegistrar" type="Node" parent="CinematicKing/Sprites/King/Shield" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "hero_shield"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
 [node name="Bobble" type="Node" parent="CinematicKing" node_paths=PackedStringArray("target")]
 script = ExtResource("12_1g4j3")
@@ -271,40 +653,8 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CinematicKing/Area2D"]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_rht18")
-
-[node name="MessageBox" parent="." instance=ExtResource("9_0tqu0")]
-layout_mode = 1
-
-[node name="TutorialTopText" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 16.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 16
-
-[node name="TutorialText" type="RichTextLabel" parent="TutorialTopText"]
-visible = false
-layout_mode = 2
-theme_override_colors/default_color = Color(0.87451, 0.796078, 0.74902, 1)
-theme_override_colors/font_shadow_color = Color(0.87451, 0.796078, 0.74902, 1)
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_outline_size = 2
-theme_override_fonts/normal_font = ExtResource("16_rht18")
-theme_override_font_sizes/normal_font_size = 36
-bbcode_enabled = true
-text = "[center][wave]Click and drag to make a looping path through the lumbermill"
-
-[node name="ObjectRegistrar" type="Node" parent="TutorialTopText" node_paths=PackedStringArray("object")]
-script = ExtResource("3_51exa")
-object = NodePath("../TutorialText")
-registry_name = "tutorial_text"
-world = true
-metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+position = Vector2(0, 22)
+shape = SubResource("CircleShape2D_fun36")
 
 [node name="LeftBar" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(135, 0)
@@ -357,10 +707,15 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ResourceContainerWithTemp" parent="LeftBar/VBoxContainer2/Panel2/VBoxContainer" instance=ExtResource("24_2ofrh")]
+[node name="Damage" parent="LeftBar/VBoxContainer2/Panel2/VBoxContainer" instance=ExtResource("24_2ofrh")]
 layout_mode = 2
 resource = "damage"
 texture = ExtResource("25_blrat")
+
+[node name="Armor" parent="LeftBar/VBoxContainer2/Panel2/VBoxContainer" instance=ExtResource("24_2ofrh")]
+layout_mode = 2
+resource = "armor"
+texture = ExtResource("26_blrat")
 
 [node name="UIFade" type="Node" parent="LeftBar" node_paths=PackedStringArray("reference")]
 script = ExtResource("24_c8uhw")
@@ -375,3 +730,538 @@ object = NodePath("..")
 registry_name = "resources_fade"
 world = true
 metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="EncounterMeter" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 148
+
+[node name="Encounters" type="VBoxContainer" parent="EncounterMeter"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Nothing" type="Control" parent="EncounterMeter/Encounters"]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+
+[node name="Nothing2" type="Control" parent="EncounterMeter/Encounters"]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+
+[node name="SkeletonEncounter" type="TextureRect" parent="EncounterMeter/Encounters"]
+z_index = 1
+material = SubResource("ShaderMaterial_uryex")
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+texture = ExtResource("37_dtcuh")
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("33_uryex")
+enemy_stats = ExtResource("39_7mjhv")
+metadata/_custom_type_script = "uid://d1h1otuuiy32v"
+
+[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/Encounters/SkeletonEncounter"]
+modulate = Color(0.815686, 0.254902, 0.32549, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(32, 64)
+layout_mode = 0
+offset_left = 59.0
+offset_right = 91.0
+offset_bottom = 64.0
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+size_flags_horizontal = 4
+texture = ExtResource("31_ac7wk")
+patch_margin_top = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+
+[node name="Nothing4" type="Control" parent="EncounterMeter/Encounters"]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+
+[node name="Nothing6" type="Control" parent="EncounterMeter/Encounters"]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+
+[node name="SlimeEncounter" type="TextureRect" parent="EncounterMeter/Encounters"]
+z_index = 1
+material = SubResource("ShaderMaterial_uryex")
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+texture = ExtResource("32_riqf5")
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("33_uryex")
+enemy_stats = ExtResource("35_aj8vu")
+metadata/_custom_type_script = "uid://d1h1otuuiy32v"
+
+[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/Encounters/SlimeEncounter"]
+modulate = Color(0.815686, 0.254902, 0.32549, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(32, 64)
+layout_mode = 0
+offset_left = 59.0
+offset_right = 91.0
+offset_bottom = 64.0
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+size_flags_horizontal = 4
+texture = ExtResource("31_ac7wk")
+patch_margin_top = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+
+[node name="Nothing7" type="Control" parent="EncounterMeter/Encounters"]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+
+[node name="Nothing8" type="Control" parent="EncounterMeter/Encounters"]
+custom_minimum_size = Vector2(0, 33)
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="EncounterMeter"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("31_ac7wk")
+axis_stretch_vertical = 2
+
+[node name="Control" type="Control" parent="EncounterMeter"]
+layout_mode = 2
+
+[node name="KingMarker" type="TextureRect" parent="EncounterMeter/Control"]
+z_index = 1
+material = SubResource("ShaderMaterial_riqf5")
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 238.0
+offset_right = 57.0
+offset_bottom = 270.0
+size_flags_horizontal = 4
+texture = ExtResource("7_8nnr2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/Control/KingMarker"]
+modulate = Color(1, 0.862745, 0.415686, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(32, 64)
+layout_mode = 0
+offset_left = 34.0
+offset_right = 66.0
+offset_bottom = 64.0
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+size_flags_horizontal = 4
+texture = ExtResource("31_ac7wk")
+patch_margin_top = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+
+[node name="UIFade" type="Node" parent="EncounterMeter" node_paths=PackedStringArray("reference")]
+script = ExtResource("24_c8uhw")
+reference = NodePath("..")
+offset = Vector2(120, 0)
+duration = 1.0
+metadata/_custom_type_script = "uid://befbm3t0x61pp"
+
+[node name="ObjectRegistrar" type="Node" parent="EncounterMeter/UIFade" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "encounter_meter_fade"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="BattleCanvas" type="CanvasLayer" parent="."]
+
+[node name="Blackout" type="ColorRect" parent="BattleCanvas"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleCanvas"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(480, 270)
+mouse_filter = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 140
+
+[node name="Panel" type="Panel" parent="BattleCanvas/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uryex")
+
+[node name="CenterContainer" type="CenterContainer" parent="BattleCanvas/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleCanvas/MarginContainer/Panel/CenterContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_constants/separation = 160
+alignment = 1
+
+[node name="HeroContainer" type="Control" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="HeroTexture" type="TextureRect" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer"]
+material = SubResource("ShaderMaterial_v16bn")
+layout_mode = 2
+offset_right = 80.0
+offset_bottom = 80.0
+pivot_offset = Vector2(40, 40)
+texture = ExtResource("7_8nnr2")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="EnemyContainer" type="Control" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="EnemyTexture" type="TextureRect" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer"]
+material = SubResource("ShaderMaterial_v16bn")
+layout_mode = 2
+offset_right = 80.0
+offset_bottom = 80.0
+pivot_offset = Vector2(40, 40)
+texture = ExtResource("32_riqf5")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="HealthBorder" type="Panel" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 0
+offset_left = -24.0
+offset_top = -43.0
+offset_right = 104.0
+offset_bottom = -27.0
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kqish")
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 1
+
+[node name="HealthBar" type="ColorRect" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder/MarginContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.552941, 0.756863, 0.337255, 1)
+
+[node name="EnemyHealth" type="Node" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder/MarginContainer" node_paths=PackedStringArray("bar")]
+script = ExtResource("36_53uw1")
+bar = NodePath("../HealthBar")
+proportion = 125.0
+metadata/_custom_type_script = "uid://boebvigouefa7"
+
+[node name="UIScale" type="Node" parent="BattleCanvas/MarginContainer" node_paths=PackedStringArray("reference")]
+script = ExtResource("35_mbqar")
+reference = NodePath("..")
+duration = 1.0
+metadata/_custom_type_script = "uid://n1qdvck6b2a5"
+
+[node name="ColorRect" type="ColorRect" parent="BattleCanvas/MarginContainer"]
+material = SubResource("ShaderMaterial_n6wyj")
+layout_mode = 2
+
+[node name="TopLayer" type="CanvasLayer" parent="."]
+
+[node name="FloatingContainer" type="Control" parent="TopLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MessageBox" parent="TopLayer" instance=ExtResource("9_0tqu0")]
+
+[node name="TutorialTopText" type="MarginContainer" parent="TopLayer"]
+custom_minimum_size = Vector2(0, 128)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 128.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 64
+
+[node name="TutorialText" type="RichTextLabel" parent="TopLayer/TutorialTopText"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.87451, 0.796078, 0.74902, 1)
+theme_override_colors/font_shadow_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("16_rht18")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center][wave]Click and drag to make a looping path through the lumbermill"
+
+[node name="ObjectRegistrar" type="Node" parent="TopLayer/TutorialTopText" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("../TutorialText")
+registry_name = "tutorial_text"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="HealthContainer" type="MarginContainer" parent="TopLayer"]
+custom_minimum_size = Vector2(0, 80)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLayer/HealthContainer"]
+layout_mode = 2
+theme_override_constants/separation = -18
+
+[node name="Label" type="Label" parent="TopLayer/HealthContainer/VBoxContainer"]
+layout_mode = 2
+text = "KING"
+label_settings = SubResource("LabelSettings_81o5c")
+horizontal_alignment = 1
+
+[node name="HealthBorder" type="Panel" parent="TopLayer/HealthContainer/VBoxContainer"]
+z_index = -1
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_53uw1")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopLayer/HealthContainer/VBoxContainer/HealthBorder"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 1
+
+[node name="HealthBar" type="ColorRect" parent="TopLayer/HealthContainer/VBoxContainer/HealthBorder/MarginContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.552941, 0.756863, 0.337255, 1)
+
+[node name="PlayerHealth" type="Node" parent="TopLayer/HealthContainer/VBoxContainer/HealthBorder" node_paths=PackedStringArray("bar")]
+script = ExtResource("40_v16bn")
+bar = NodePath("../MarginContainer/HealthBar")
+proportion = 125.0
+metadata/_custom_type_script = "uid://bkykjgchy4w6s"
+
+[node name="UIFade" type="Node" parent="TopLayer/HealthContainer" node_paths=PackedStringArray("reference")]
+script = ExtResource("24_c8uhw")
+reference = NodePath("..")
+offset = Vector2(0, -110)
+duration = 1.0
+metadata/_custom_type_script = "uid://befbm3t0x61pp"
+
+[node name="ObjectRegistrar" type="Node" parent="TopLayer/HealthContainer/UIFade" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "king_health_fade"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="Defeat" type="CenterContainer" parent="TopLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(480, 270)
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="TopLayer/Defeat"]
+custom_minimum_size = Vector2(384, 160)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_rfh6t")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopLayer/Defeat/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLayer/Defeat/Panel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="TopLayer/Defeat/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "OH NO!
+THE KING HAS PERISHED, AND ALL HOPE IS LOST."
+label_settings = SubResource("LabelSettings_88lfo")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopLayer/Defeat/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+alignment = 1
+
+[node name="Retry" type="Button" parent="TopLayer/Defeat/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("16_rht18")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_88lfo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_24lty")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uxcfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dg0v5")
+text = "RETRY"
+
+[node name="LevelSelect" type="Button" parent="TopLayer/Defeat/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("16_rht18")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_40fav")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2l3jm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uxcfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sjgf8")
+text = "LEVEL SELECT"
+
+[node name="UIScale" type="Node" parent="TopLayer/Defeat" node_paths=PackedStringArray("reference")]
+script = ExtResource("35_mbqar")
+reference = NodePath("..")
+duration = 1.0
+metadata/_custom_type_script = "uid://n1qdvck6b2a5"
+
+[node name="Rewards" type="CenterContainer" parent="TopLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(480, 270)
+
+[node name="Panel" type="Panel" parent="TopLayer/Rewards"]
+custom_minimum_size = Vector2(600, 350)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_6v7of")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopLayer/Rewards/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLayer/Rewards/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="TutorialText" type="RichTextLabel" parent="TopLayer/Rewards/Panel/MarginContainer/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.552941, 0.756863, 0.337255, 1)
+theme_override_colors/font_shadow_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/normal_font = ExtResource("16_rht18")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center][wave]VICTORY!"
+fit_content = true
+scroll_active = false
+
+[node name="Label" type="Label" parent="TopLayer/Rewards/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SELECT A REWARD"
+label_settings = SubResource("LabelSettings_88lfo")
+horizontal_alignment = 1
+
+[node name="Rewards" type="HBoxContainer" parent="TopLayer/Rewards/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="RewardTemplate" parent="TopLayer/Rewards/Panel/MarginContainer/VBoxContainer/Rewards" instance=ExtResource("44_24lty")]
+layout_mode = 2
+test_reward = ExtResource("45_uxcfi")
+
+[node name="SkipButton" type="Button" parent="TopLayer/Rewards/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("16_rht18")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_40fav")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2l3jm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uxcfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sjgf8")
+text = "SKIP"
+
+[node name="UIScale" type="Node" parent="TopLayer/Rewards" node_paths=PackedStringArray("reference")]
+script = ExtResource("35_mbqar")
+reference = NodePath("..")
+duration = 1.0
+metadata/_custom_type_script = "uid://n1qdvck6b2a5"
+
+[node name="ScreenTransition" parent="." instance=ExtResource("42_kqish")]

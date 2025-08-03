@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AddResourceReward" load_steps=3 format=3 uid="uid://6h5vjpjqm611"]
+
+[ext_resource type="Script" uid="uid://clxr2e6dsa83s" path="res://scripts/game/objects/add_resource_reward.gd" id="1_15gxs"]
+[ext_resource type="Texture2D" uid="uid://lm1wwv6grbql" path="res://textures/sprites/rewards/wood_shipment.png" id="2_k1eml"]
+
+[resource]
+script = ExtResource("1_15gxs")
+resource = "wood"
+amount = 30
+display_name = "Wood Shipment"
+description = "+30 wood"
+flavor_text = "A gift from the beavers"
+texture_reward = ExtResource("2_k1eml")
+upgrades_with = Array[String]([])
+metadata/_custom_type_script = "uid://clxr2e6dsa83s"

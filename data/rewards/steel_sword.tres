@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://n5e4mvylc6ui"]
+
+[ext_resource type="Script" uid="uid://dlbmm63toehug" path="res://scripts/game/objects/equipment_resource.gd" id="1_fkcdt"]
+[ext_resource type="Texture2D" uid="uid://c8gj5sf66fko5" path="res://textures/sprites/weapons/steel_sword.png" id="2_fkcdt"]
+
+[resource]
+script = ExtResource("1_fkcdt")
+type = 0
+texture_equipped = ExtResource("2_fkcdt")
+damage = 1
+armor = 0
+speed_multiplier = 1.0
+extra_effect = ""
+display_name = "Steel Sword"
+description = "POWER: 1"
+flavor_text = "THE MOST DEFAULT SWORD IN THE WORLD"
+texture_reward = ExtResource("2_fkcdt")
+upgrades_with = Array[String]([])
+metadata/_custom_type_script = "uid://dlbmm63toehug"

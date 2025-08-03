@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://wqrybt48ohod"]
+
+[ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="1_l6slu"]
+
+[resource]
+font = ExtResource("1_l6slu")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+outline_size = 8

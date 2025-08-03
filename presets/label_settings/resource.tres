@@ -1,0 +1,16 @@
+[gd_resource type="LabelSettings" load_steps=3 format=3 uid="uid://cxnaajruiuyxf"]
+
+[ext_resource type="FontFile" uid="uid://dj425vssygri6" path="res://fonts/JuliaBlack-Medium.otf" id="1_1o64s"]
+
+[sub_resource type="FontVariation" id="FontVariation_shuml"]
+base_font = ExtResource("1_1o64s")
+variation_embolden = 0.5
+spacing_glyph = 3
+baseline_offset = 0.1
+
+[resource]
+font = SubResource("FontVariation_shuml")
+font_size = 36
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 2)

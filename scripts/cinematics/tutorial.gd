@@ -19,11 +19,13 @@ func _on_message_box(obj: MessageBox):
     message_box = obj
     
 func play_tutorial():
-    Flags.played_tutorial = true
     await World.wait_for_objects(["line_drawer", "message_box", "cinematic_king",
         "king_bobble", "king_speak", "lumbermill_fade", "tutorial_text",
         "path_manager", "lumbermill_resource", "goldmine_resource", "goldmine_fade",
-        "player_resources", "resources_fade"])
+        "player_resources", "resources_fade", "king_health_fade", "encounter_manager",
+        "encounter_meter_fade", "battle_manager"])
+    var tutorial_text = World.require("tutorial_text") as RichTextLabel
+    tutorial_text.visible = false
     line_drawer.blocker.block("tutorial")
     var king = World.require("cinematic_king") as Actor
     var bobble = World.require("king_bobble") as Bobble
@@ -47,7 +49,6 @@ func play_tutorial():
     await message_box.message("The shape must go through the lumbermill for you to collect the resource.")
     await message_box.hide_box()
     line_drawer.blocker.unblock("tutorial")
-    var tutorial_text = World.require("tutorial_text") as RichTextLabel
     tutorial_text.text = "[center][wave]Click and drag to make a looping path through the lumbermill"
     tutorial_text.visible = true
     var path_manager = World.require("path_manager") as PathManager
@@ -60,6 +61,7 @@ func play_tutorial():
         await path_manager.on_path_created 
     tutorial_text.text = "[center][wave]Nice, watch as the king goes and collects the resource"
     tutorial_text.visible = true
+    line_drawer.blocker.block("tutorial")
     await path_manager.on_path_loop
     tutorial_text.visible = false
     path_manager.pause_paths()
@@ -67,16 +69,17 @@ func play_tutorial():
     await message_box.message("Resources regenerate on a cooldown, so plan your loops accordingly.")
     await message_box.hide_box()
     path_manager.unpause_paths()
+    line_drawer.blocker.unblock("tutorial")
     var goldmine_fade = World.require("goldmine_fade") as FadeScale
     goldmine_fade.start_animation()
     var goldmine_resource = World.require("goldmine_resource") as ResourceGiver
     goldmine_resource.active = true
-    tutorial_text.text = "[center][wave]Collect 5 wood and 5 gold"
+    tutorial_text.text = "[center][wave]Collect 5 wood and 3 gold"
     tutorial_text.visible = true
     var resources_fade = World.require("resources_fade") as UIFade
     resources_fade.fade_in()
     var resources = World.require("player_resources") as PlayerResources
-    while not resources.check({ "wood": 5, "gold":5}):
+    while not resources.check({ "wood": 5, "gold":3}):
         await get_tree().process_frame
     tutorial_text.visible = false
     path_manager.pause_paths()
@@ -87,8 +90,23 @@ func play_tutorial():
     path_manager.unpause_paths()
     tutorial_text.text = "[center][wave]Get ready to battle"
     tutorial_text.visible = true
+    var health_ui = World.require("king_health_fade") as UIFade
+    health_ui.fade_in()
+    var encounter_manager = World.require("encounter_manager") as EncounterManager
+    encounter_manager.set_active(true)
+    var encounter_fade = World.require("encounter_meter_fade") as UIFade
+    encounter_fade.fade_in()
+    var battle_manager = World.require("battle_manager") as BattleManager
+    await battle_manager.on_battle_start
+    tutorial_text.text = "[center][wave]Watch the battle unfold!"
+    tutorial_text.visible = false
+    #path_manager.pause_paths()
+    #await message_box.message("")
+    #await message_box.message("Use your resources to buy upgrades.")
+    #path_manager.unpause_paths()
+    
 func _start_speak():
-    speak.start_animation()    
+    speak.start_animation()
 
 func _stop_speak():
     speak.stop_animation()

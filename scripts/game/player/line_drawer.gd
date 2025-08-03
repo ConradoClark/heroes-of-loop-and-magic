@@ -127,6 +127,7 @@ func _detect_circle() -> bool:
     return is_circle
     
 func _disappear_on_release(line: Line2D):
+    if not line: return
     ink_manager.on_shape_destroyed.emit(line.get_instance_id())
     var tween = create_tween()
     tween.tween_property(line, "width", 0., .3)\

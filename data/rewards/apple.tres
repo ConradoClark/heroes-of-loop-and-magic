@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://beqx5xheynemj"]
+
+[ext_resource type="Script" uid="uid://dlbmm63toehug" path="res://scripts/game/objects/equipment_resource.gd" id="1_kupix"]
+[ext_resource type="Texture2D" uid="uid://ccdx3jvsufutw" path="res://textures/sprites/shields/apple_shield.png" id="2_ncftq"]
+
+[resource]
+script = ExtResource("1_kupix")
+type = 1
+texture_equipped = ExtResource("2_ncftq")
+damage = 0
+armor = 2
+speed_multiplier = 1.0
+extra_effect = ""
+display_name = "An Apple"
+description = "ARMOR: 2"
+flavor_text = "A LITERAL APPLE USED AS SHIELD"
+texture_reward = ExtResource("2_ncftq")
+upgrades_with = Array[String](["wood"])
+metadata/_custom_type_script = "uid://dlbmm63toehug"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://bbri881rekqxp"]
+
+[ext_resource type="Script" uid="uid://dlbmm63toehug" path="res://scripts/game/objects/equipment_resource.gd" id="1_dxtql"]
+[ext_resource type="Texture2D" uid="uid://b1s0lv7k8wa7a" path="res://textures/sprites/weapons/slime_sword.png" id="2_3et8y"]
+
+[resource]
+script = ExtResource("1_dxtql")
+type = 0
+texture_equipped = ExtResource("2_3et8y")
+damage = 2
+armor = 0
+speed_multiplier = 1.0
+extra_effect = ""
+display_name = "Slime Sword"
+description = "POWER: 2"
+flavor_text = "HOW COME THIS IS BETTER THAN STEEL?"
+texture_reward = ExtResource("2_3et8y")
+upgrades_with = Array[String](["wood", "gold"])
+metadata/_custom_type_script = "uid://dlbmm63toehug"

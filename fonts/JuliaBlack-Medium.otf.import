@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://7em2blfim5tr"
-path="res://.godot/imported/Julia Black Extended.ttf-b1ae2a12111d3b8d1229a83ae4bf6199.fontdata"
+uid="uid://dj425vssygri6"
+path="res://.godot/imported/JuliaBlack-Medium.otf-5fa33fcf40ab5223528d18969087a661.fontdata"
 
 [deps]
 
-source_file="res://fonts/Julia Black Extended.ttf"
-dest_files=["res://.godot/imported/Julia Black Extended.ttf-b1ae2a12111d3b8d1229a83ae4bf6199.fontdata"]
+source_file="res://fonts/JuliaBlack-Medium.otf"
+dest_files=["res://.godot/imported/JuliaBlack-Medium.otf-5fa33fcf40ab5223528d18969087a661.fontdata"]
 
 [params]
 

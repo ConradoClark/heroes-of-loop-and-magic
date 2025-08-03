@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddbnt7pwe0m5l"]
+
+[ext_resource type="Script" uid="uid://f602vrcbbta" path="res://scripts/ui/floating/floating_content.gd" id="1_lh242"]
+
+[node name="FloatingContent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lh242")
+metadata/_custom_type_script = "uid://f602vrcbbta"

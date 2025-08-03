@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://jo58gdafffcf"]
+
+[ext_resource type="Script" uid="uid://dlbmm63toehug" path="res://scripts/game/objects/equipment_resource.gd" id="1_p1ohv"]
+[ext_resource type="Texture2D" uid="uid://sw3qj21y72ba" path="res://textures/sprites/weapons/twig.png" id="2_qkf5g"]
+
+[resource]
+script = ExtResource("1_p1ohv")
+type = 0
+texture_equipped = ExtResource("2_qkf5g")
+damage = 1
+armor = 0
+speed_multiplier = 2.0
+extra_effect = ""
+display_name = "Twig Wand"
+description = "POWER: 1
+FAST"
+flavor_text = "A MAGIC WAND WITH NO MAGIC"
+texture_reward = ExtResource("2_qkf5g")
+upgrades_with = Array[String](["wood"])
+metadata/_custom_type_script = "uid://dlbmm63toehug"

@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjlr2cljr2l4h"]
+[gd_scene load_steps=8 format=3 uid="uid://bjlr2cljr2l4h"]
 
 [ext_resource type="Script" uid="uid://dv0b7g6ehesq6" path="res://scripts/ui/resource_container.gd" id="1_him42"]
 [ext_resource type="Texture2D" uid="uid://bcikxyx1u82we" path="res://textures/ui/icons/wood.png" id="2_rjxis"]
-[ext_resource type="FontFile" uid="uid://7em2blfim5tr" path="res://fonts/Julia Black Extended.ttf" id="3_6apah"]
+[ext_resource type="FontFile" uid="uid://dj425vssygri6" path="res://fonts/JuliaBlack-Medium.otf" id="3_rjxis"]
 [ext_resource type="Script" uid="uid://b1g6xk5hio7ty" path="res://scripts/ui/resource_text.gd" id="4_xymaq"]
+[ext_resource type="LabelSettings" uid="uid://hgr01p8su6yy" path="res://presets/label_settings/temp_resource.tres" id="5_rjxis"]
 
 [sub_resource type="FontVariation" id="FontVariation_him42"]
-base_font = ExtResource("3_6apah")
+base_font = ExtResource("3_rjxis")
 variation_embolden = 0.5
 spacing_glyph = 3
 baseline_offset = 0.1
@@ -14,19 +15,6 @@ baseline_offset = 0.1
 [sub_resource type="LabelSettings" id="LabelSettings_2ofrh"]
 font = SubResource("FontVariation_him42")
 font_size = 36
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(0, 2)
-
-[sub_resource type="FontVariation" id="FontVariation_rjxis"]
-base_font = ExtResource("3_6apah")
-variation_embolden = 0.5
-spacing_glyph = 3
-baseline_offset = 0.3
-
-[sub_resource type="LabelSettings" id="LabelSettings_6apah"]
-font = SubResource("FontVariation_rjxis")
-font_size = 24
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 2)
@@ -53,7 +41,7 @@ metadata/_custom_type_script = "uid://b1g6xk5hio7ty"
 [node name="ResourceTextTemp" type="Label" parent="."]
 layout_mode = 2
 text = "+0"
-label_settings = SubResource("LabelSettings_6apah")
+label_settings = ExtResource("5_rjxis")
 script = ExtResource("4_xymaq")
 is_temporary = true
 metadata/_custom_type_script = "uid://b1g6xk5hio7ty"

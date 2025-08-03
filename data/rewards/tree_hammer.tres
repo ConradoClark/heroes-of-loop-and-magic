@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://cpaqlupiipc6c"]
+
+[ext_resource type="Script" uid="uid://dlbmm63toehug" path="res://scripts/game/objects/equipment_resource.gd" id="1_q0tbv"]
+[ext_resource type="Texture2D" uid="uid://csqkeoeoqndgh" path="res://textures/sprites/weapons/tree_hammer.png" id="2_xl482"]
+
+[resource]
+script = ExtResource("1_q0tbv")
+type = 0
+texture_equipped = ExtResource("2_xl482")
+damage = 5
+armor = 0
+speed_multiplier = 0.5
+extra_effect = ""
+display_name = "Tree Hammer"
+description = "POWER: 5
+SLOW"
+flavor_text = "TIMBEEEEEEEER!"
+texture_reward = ExtResource("2_xl482")
+upgrades_with = Array[String](["wood"])
+metadata/_custom_type_script = "uid://dlbmm63toehug"

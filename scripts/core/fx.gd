@@ -12,3 +12,7 @@ func change_scene(scene: String):
   var old_scene = get_tree().current_scene
   get_tree().current_scene = instance
   old_scene.free()
+
+func random_inside_unit_circle() -> Vector2:
+    var theta = randf() * TAU
+    return Vector2(cos(theta), sin(theta)) * sqrt(randf())

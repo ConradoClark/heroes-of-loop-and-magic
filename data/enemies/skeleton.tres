@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=8 format=3 uid="uid://dy0er8has5qrk"]
+
+[ext_resource type="Texture2D" uid="uid://dpwfqnnxe5d47" path="res://textures/sprites/monsters/skeleton.png" id="1_2765a"]
+[ext_resource type="Script" uid="uid://di1rbii32aorn" path="res://scripts/game/objects/reward_resource.gd" id="2_7swr6"]
+[ext_resource type="Resource" uid="uid://beqx5xheynemj" path="res://data/rewards/apple.tres" id="3_f6q1b"]
+[ext_resource type="Resource" uid="uid://cpaqlupiipc6c" path="res://data/rewards/tree_hammer.tres" id="5_ok8xq"]
+[ext_resource type="Resource" uid="uid://jo58gdafffcf" path="res://data/rewards/twig.tres" id="6_a4t8e"]
+[ext_resource type="Resource" uid="uid://6h5vjpjqm611" path="res://data/rewards/wood_30.tres" id="7_jan5e"]
+[ext_resource type="Script" uid="uid://yg5fogqpny1k" path="res://scripts/game/objects/enemy_resource.gd" id="8_ee2du"]
+
+[resource]
+script = ExtResource("8_ee2du")
+enemy_texture = ExtResource("1_2765a")
+max_health = 15
+attack_frequency = 2.0
+damage = 2
+armor = 0
+is_boss = false
+rewards = Array[ExtResource("2_7swr6")]([ExtResource("3_f6q1b"), ExtResource("5_ok8xq"), ExtResource("6_a4t8e"), ExtResource("7_jan5e")])
+metadata/_custom_type_script = "uid://yg5fogqpny1k"

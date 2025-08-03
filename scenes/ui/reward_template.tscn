@@ -1,0 +1,184 @@
+[gd_scene load_steps=12 format=3 uid="uid://bgfmloegobr70"]
+
+[ext_resource type="Script" uid="uid://pq155aayihl6" path="res://scripts/ui/reward_card.gd" id="1_0570d"]
+[ext_resource type="LabelSettings" uid="uid://wqrybt48ohod" path="res://presets/label_settings/equipment_title.tres" id="1_fqx8e"]
+[ext_resource type="Texture2D" uid="uid://cx0fm45h7nbdy" path="res://textures/sprites/monsters/slime.png" id="2_0570d"]
+[ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="3_0goc5"]
+[ext_resource type="Texture2D" uid="uid://bcikxyx1u82we" path="res://textures/ui/icons/wood.png" id="5_yfv7a"]
+[ext_resource type="Texture2D" uid="uid://ckmchbj500jke" path="res://textures/ui/icons/gold.png" id="6_nnsg6"]
+[ext_resource type="Script" uid="uid://n1qdvck6b2a5" path="res://scripts/ui/ui_scale.gd" id="7_nnsg6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfv7a"]
+bg_color = Color(0.87451, 0.796078, 0.74902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_nnsg6"]
+line_spacing = -5.0
+font = ExtResource("3_0goc5")
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(1, 1, 1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hhswe"]
+line_spacing = -5.0
+font = ExtResource("3_0goc5")
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(1, 1, 1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fqx8e"]
+line_spacing = -5.0
+font = ExtResource("3_0goc5")
+font_size = 14
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="RewardTemplate" type="Control"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -100.0
+offset_right = 75.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(75, 100)
+mouse_filter = 2
+script = ExtResource("1_0570d")
+metadata/_custom_type_script = "uid://pq155aayihl6"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(75, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yfv7a")
+
+[node name="Header" type="Panel" parent="Panel"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 64)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yfv7a")
+
+[node name="Title" type="Label" parent="Panel/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Rubber Hammer"
+label_settings = ExtResource("1_fqx8e")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 48
+
+[node name="Content" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+texture = ExtResource("2_0570d")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ItemDescription" type="Label" parent="Panel/Margin/Content"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "POWER: 5
+SLOW"
+label_settings = SubResource("LabelSettings_nnsg6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeWith" type="Label" parent="Panel/Margin/Content"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "UPGRADE WITH"
+label_settings = SubResource("LabelSettings_hhswe")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+alignment = 1
+
+[node name="Wood" type="TextureRect" parent="Panel/Margin/Content/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_yfv7a")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Gold" type="TextureRect" parent="Panel/Margin/Content/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_nnsg6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Crystal" type="TextureRect" parent="Panel/Margin/Content/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_nnsg6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Bottom" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Flavor" type="Label" parent="Panel/Bottom"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "LOOKS WEAK, BUT PACKS A PUNCH"
+label_settings = SubResource("LabelSettings_fqx8e")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="UIScale" type="Node" parent="." node_paths=PackedStringArray("reference")]
+script = ExtResource("7_nnsg6")
+reference = NodePath("..")
+duration = 0.5
+metadata/_custom_type_script = "uid://n1qdvck6b2a5"

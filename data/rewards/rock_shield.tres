@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://btanhunmdcis2"]
+
+[ext_resource type="Script" uid="uid://dlbmm63toehug" path="res://scripts/game/objects/equipment_resource.gd" id="1_h6kpw"]
+[ext_resource type="Texture2D" uid="uid://dpmstrsxuqht7" path="res://textures/sprites/shields/stone_shield.png" id="2_h6kpw"]
+
+[resource]
+script = ExtResource("1_h6kpw")
+type = 1
+texture_equipped = ExtResource("2_h6kpw")
+damage = 0
+armor = 10
+speed_multiplier = 0.5
+extra_effect = ""
+display_name = "Rock Shield"
+description = "ARMOR: 10
+SLOWS YOU"
+flavor_text = "HEAVY BUT EFFECTIVE"
+texture_reward = ExtResource("2_h6kpw")
+upgrades_with = Array[String](["wood", "gold"])
+metadata/_custom_type_script = "uid://dlbmm63toehug"

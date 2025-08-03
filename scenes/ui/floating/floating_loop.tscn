@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0jc3sie1vta2"]
+
+[ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="1_qkinu"]
+
+[node name="FloatingLoop" type="Control"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 16)
+
+[node name="Label" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.603922, 0.905882, 0.788235, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("1_qkinu")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center][tornado freq=12. radius=4.]LOOP!"
+fit_content = true
+scroll_active = false
