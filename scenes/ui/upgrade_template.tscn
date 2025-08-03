@@ -17,7 +17,6 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-expand_margin_top = 4.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_oerl1"]
 line_spacing = -5.0

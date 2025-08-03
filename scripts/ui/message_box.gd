@@ -80,6 +80,7 @@ func _change_cursor_visibility():
     
 func hide_box():
     if not showing: return
+    await get_tree().process_frame
     showing = false
     _create_tween()
     tween.tween_property(self, "global_position:y", original_y + offset, .5)\

@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://db7kkljlqqtda"]
+
+[ext_resource type="Script" uid="uid://dp3keiu45oq6" path="res://scripts/ui/tooltip.gd" id="1_b5j4s"]
+[ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="1_mtwet"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5j4s"]
+bg_color = Color(0.3795, 0.65895, 0.69, 0.623529)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Tooltip" type="Panel"]
+custom_minimum_size = Vector2(160, 48)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -24.0
+offset_right = 80.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(80, 24)
+theme_override_styles/panel = SubResource("StyleBoxFlat_b5j4s")
+script = ExtResource("1_b5j4s")
+metadata/_custom_type_script = "uid://dp3keiu45oq6"
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_fonts/normal_font = ExtResource("1_mtwet")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]THIS IS A TOOLTIP AND IT COSTS [color=d5f66e]3[img=20x20]uid://bcikxyx1u82we[/img]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

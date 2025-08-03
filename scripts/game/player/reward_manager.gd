@@ -28,6 +28,7 @@ func _on_skip():
     rewards_ui.fade_out()
     battle_manager.fade_out_blackout()
     on_reward_skip.emit()
+    on_reward_chosen.emit()
     open = false
     
 func select_reward(reward: RewardResource):

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EquipmentResource" load_steps=3 format=3 uid="uid://cdf7hfqe8wbqv"]
+
+[ext_resource type="Script" uid="uid://dlbmm63toehug" path="res://scripts/game/objects/equipment_resource.gd" id="1_rs012"]
+[ext_resource type="Texture2D" uid="uid://c2v1ria0xceiy" path="res://textures/sprites/shields/skeleton_shield.png" id="2_rs012"]
+
+[resource]
+script = ExtResource("1_rs012")
+type = 1
+texture_equipped = ExtResource("2_rs012")
+damage = 1
+armor = 4
+speed_multiplier = 1.0
+extra_effect = ""
+display_name = "Skelly Shield"
+description = "ARMOR: 4
+DAMAGE: 1"
+flavor_text = "SO INTIMIDATING IT HURTS"
+texture_reward = ExtResource("2_rs012")
+upgrades_with = Array[String](["gold"])
+metadata/_custom_type_script = "uid://dlbmm63toehug"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=4 format=3 uid="uid://clxm0yh86tmj6"]
+
+[ext_resource type="Texture2D" uid="uid://pjixem7fm2bs" path="res://textures/sprites/monsters/golem.png" id="1_ottg2"]
+[ext_resource type="Script" uid="uid://di1rbii32aorn" path="res://scripts/game/objects/reward_resource.gd" id="2_imu75"]
+[ext_resource type="Script" uid="uid://yg5fogqpny1k" path="res://scripts/game/objects/enemy_resource.gd" id="8_qon5c"]
+
+[resource]
+script = ExtResource("8_qon5c")
+enemy_texture = ExtResource("1_ottg2")
+max_health = 20
+attack_frequency = 3.0
+damage = 3
+armor = 5
+is_boss = true
+rewards = Array[ExtResource("2_imu75")]([])
+metadata/_custom_type_script = "uid://yg5fogqpny1k"

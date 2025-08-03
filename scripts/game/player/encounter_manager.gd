@@ -3,7 +3,7 @@ extends Node
 class_name EncounterManager
 
 @export var king_marker: Control
-@export var king_speed: float = 2.
+@export var king_speed: float = 1.75
 @export var min_y: float
 @export var max_y: float
 

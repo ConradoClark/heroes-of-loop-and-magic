@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://suj5fxf2xncx"]
+[gd_scene load_steps=89 format=3 uid="uid://suj5fxf2xncx"]
 
 [ext_resource type="Script" uid="uid://bbe3kfjxtdmgu" path="res://scripts/game/player/ink_manager.gd" id="1_lsg8u"]
 [ext_resource type="Script" uid="uid://bkei43vrao416" path="res://scripts/game/player/inks/tap_ink.gd" id="2_ep3tm"]
@@ -26,7 +26,9 @@
 [ext_resource type="Resource" uid="uid://514yq17re8g8" path="res://data/upgrades/inner_fire.tres" id="10_drqpf"]
 [ext_resource type="Script" uid="uid://dvnf0cajelsoy" path="res://scripts/game/objects/resource_giver.gd" id="10_t4akp"]
 [ext_resource type="Texture2D" uid="uid://xua4m7acgw41" path="res://textures/sprites/white_circle_4x.png" id="11_1g4j3"]
+[ext_resource type="Resource" uid="uid://c10jriqb3veuf" path="res://data/upgrades/rock_solid_1.tres" id="11_01spn"]
 [ext_resource type="Script" uid="uid://bon0cijw885ro" path="res://scripts/game/effects/bobble.gd" id="12_1g4j3"]
+[ext_resource type="Resource" uid="uid://by4tabuycslri" path="res://data/upgrades/gold_digger.tres" id="12_icwn1"]
 [ext_resource type="Script" uid="uid://drkgqbwhfq641" path="res://scripts/cinematics/tutorial.gd" id="13_12ab8"]
 [ext_resource type="LabelSettings" uid="uid://c8xe6xfqgrla6" path="res://presets/label_settings/resource_counter.tres" id="13_81o5c"]
 [ext_resource type="Script" uid="uid://begb58aqkntr7" path="res://scripts/game/effects/speak.gd" id="13_bltja"]
@@ -40,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://bjlr2cljr2l4h" path="res://scenes/ui/resource_container_2.tscn" id="24_2ofrh"]
 [ext_resource type="Script" uid="uid://befbm3t0x61pp" path="res://scripts/ui/ui_fade.gd" id="24_c8uhw"]
 [ext_resource type="Texture2D" uid="uid://cw1h58be0n332" path="res://textures/ui/icons/sword.png" id="25_blrat"]
+[ext_resource type="Texture2D" uid="uid://dcehbad4fs54g" path="res://textures/sprites/medical_tent.png" id="25_vouot"]
 [ext_resource type="Texture2D" uid="uid://btffkwmph60dm" path="res://textures/ui/icons/shield.png" id="26_blrat"]
 [ext_resource type="Shader" uid="uid://brimnfckmklx7" path="res://shaders/general/smooth_outline.gdshader" id="30_lw6g5"]
 [ext_resource type="Texture2D" uid="uid://be7qqplgndve8" path="res://textures/ui/meter_part.png" id="31_ac7wk"]
@@ -53,14 +56,17 @@
 [ext_resource type="Texture2D" uid="uid://dpwfqnnxe5d47" path="res://textures/sprites/monsters/skeleton.png" id="37_dtcuh"]
 [ext_resource type="Resource" uid="uid://dy0er8has5qrk" path="res://data/enemies/skeleton.tres" id="39_7mjhv"]
 [ext_resource type="Script" uid="uid://bkykjgchy4w6s" path="res://scripts/ui/player_health.gd" id="40_v16bn"]
+[ext_resource type="Texture2D" uid="uid://pjixem7fm2bs" path="res://textures/sprites/monsters/golem.png" id="42_6x4oh"]
 [ext_resource type="PackedScene" uid="uid://r5rys5031rbl" path="res://scenes/ui/screen_transition.tscn" id="42_kqish"]
 [ext_resource type="PackedScene" uid="uid://toe2u64ldcea" path="res://scenes/ui/upgrade_template.tscn" id="43_7mjhv"]
+[ext_resource type="Resource" uid="uid://clxm0yh86tmj6" path="res://data/enemies/golem.tres" id="44_01spn"]
 [ext_resource type="PackedScene" uid="uid://bgfmloegobr70" path="res://scenes/ui/reward_template.tscn" id="44_24lty"]
 [ext_resource type="Resource" uid="uid://beqx5xheynemj" path="res://data/rewards/apple.tres" id="45_uxcfi"]
 [ext_resource type="Script" uid="uid://cpdy60s0lhyn7" path="res://scripts/ui/upgrades_ui.gd" id="46_wp8yl"]
+[ext_resource type="PackedScene" uid="uid://db7kkljlqqtda" path="res://scenes/ui/tooltip.tscn" id="57_hh7hg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfwhk"]
-size = Vector2(90, 80)
+size = Vector2(90, 63.5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81o5c"]
 draw_center = false
@@ -268,6 +274,18 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6x4oh"]
+bg_color = Color(0.176471, 0.266667, 0.262745, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.552941, 0.756863, 0.337255, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6v7of"]
 bg_color = Color(0.431373, 0.317647, 0.415686, 1)
 border_width_left = 4
@@ -310,12 +328,9 @@ metadata/_custom_type_script = "uid://tm1xsyh3wur2"
 
 [node name="PlayerResources" type="Node" parent="Managers"]
 script = ExtResource("5_vfwhk")
-resources = Dictionary[String, int]({
-"armor": 10
-})
 weapon = ExtResource("6_sjgf8")
 shield = ExtResource("7_6v7of")
-available_upgrades = Array[ExtResource("8_drqpf")]([ExtResource("9_vouot"), ExtResource("10_drqpf")])
+available_upgrades = Array[ExtResource("8_drqpf")]([ExtResource("9_vouot"), ExtResource("10_drqpf"), ExtResource("11_01spn"), ExtResource("12_icwn1")])
 metadata/_custom_type_script = "uid://w657rmllofrk"
 
 [node name="FloatingManager" type="Node" parent="Managers" node_paths=PackedStringArray("floating_container")]
@@ -330,19 +345,21 @@ metadata/_custom_type_script = "uid://d1fcig88f0i2g"
 
 [node name="BattleManager" type="Node" parent="Managers" node_paths=PackedStringArray("battle_ui", "blackout", "hero_texture", "enemy_texture")]
 script = ExtResource("8_u3pxu")
-battle_ui = NodePath("../../BattleCanvas/MarginContainer/UIScale")
+battle_ui = NodePath("../../BattleCanvas/BattleMargin/UIScale")
 blackout = NodePath("../../BattleCanvas/Blackout")
-hero_texture = NodePath("../../BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer/HeroTexture")
-enemy_texture = NodePath("../../BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture")
+hero_texture = NodePath("../../BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/HeroContainer/HeroTexture")
+enemy_texture = NodePath("../../BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture")
 damage_color = Color(1, 0.862745, 0.415686, 0.6)
 armor_color = Color(0.674815, 0.674815, 0.674815, 0.6)
 metadata/_custom_type_script = "uid://drvg83o7gp7im"
 
-[node name="WinLoseConditions" type="Node" parent="Managers" node_paths=PackedStringArray("defeat_panel", "retry_button", "level_select_buttons")]
+[node name="WinLoseConditions" type="Node" parent="Managers" node_paths=PackedStringArray("defeat_panel", "victory_panel", "retry_button", "continue_button", "level_select_buttons")]
 script = ExtResource("9_rfh6t")
 defeat_panel = NodePath("../../TopLayer/Defeat/UIScale")
+victory_panel = NodePath("../../TopLayer/Victory/UIScale-victory")
 retry_button = NodePath("../../TopLayer/Defeat/Panel/MarginContainer/VBoxContainer/HBoxContainer/Retry")
-level_select_buttons = [NodePath("../../TopLayer/Defeat/Panel/MarginContainer/VBoxContainer/HBoxContainer/LevelSelect")]
+continue_button = NodePath("../../TopLayer/Victory/Panel/MarginContainer/VBoxContainer/HBoxContainer/Continue")
+level_select_buttons = [NodePath("../../TopLayer/Defeat/Panel/MarginContainer/VBoxContainer/HBoxContainer/LevelSelect"), NodePath("../../TopLayer/Victory/Panel/MarginContainer/VBoxContainer/HBoxContainer/LevelSelect")]
 metadata/_custom_type_script = "uid://da5oj42j6s5tk"
 
 [node name="RewardManager" type="Node" parent="Managers" node_paths=PackedStringArray("rewards_slot", "rewards_ui", "skip_button")]
@@ -430,6 +447,7 @@ label = NodePath("../Label")
 refresh_delay = 10.0
 progress_border = NodePath("../ProgressBorder")
 progress_bar = NodePath("../ProgressBorder/MarginContainer/ProgressBar")
+tooltip_message = "[center]Lumbermill gives [color=d5f66e]1[img=20x20]uid://bcikxyx1u82we[/img]"
 metadata/_custom_type_script = "uid://dvnf0cajelsoy"
 
 [node name="ObjectRegistrar" type="Node" parent="Lumbermill/ResourceGiver" node_paths=PackedStringArray("object")]
@@ -440,7 +458,7 @@ world = true
 metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
 [node name="Area2D" type="Area2D" parent="Lumbermill"]
-collision_layer = 4
+collision_layer = 5
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lumbermill/Area2D"]
@@ -525,6 +543,7 @@ label = NodePath("../Label")
 refresh_delay = 15.0
 progress_border = NodePath("../ProgressBorder")
 progress_bar = NodePath("../ProgressBorder/MarginContainer/ProgressBar")
+tooltip_message = "[center]Gold Mine gives [color=d5f66e]1[img=20x20]uid://ckmchbj500jke[/img]"
 metadata/_custom_type_script = "uid://dvnf0cajelsoy"
 
 [node name="ObjectRegistrar" type="Node" parent="GoldMine/ResourceGiver" node_paths=PackedStringArray("object")]
@@ -575,6 +594,105 @@ theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 1
 
 [node name="ProgressBar" type="ColorRect" parent="GoldMine/ProgressBorder/MarginContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.603922, 0.905882, 0.788235, 1)
+
+[node name="MedicalTent" type="Sprite2D" parent="."]
+position = Vector2(234, 305)
+texture = ExtResource("25_vouot")
+
+[node name="FadeScale" type="Node" parent="MedicalTent" node_paths=PackedStringArray("target")]
+script = ExtResource("6_8nnr2")
+scale_magnitude = Vector2(1.1, 1.3)
+duration = 1.0
+target = NodePath("..")
+metadata/_custom_type_script = "uid://drilr6c5kr0la"
+
+[node name="Shadow" type="Sprite2D" parent="MedicalTent"]
+modulate = Color(0, 0, 0, 0.901961)
+show_behind_parent = true
+z_index = -100
+position = Vector2(26, 24)
+rotation = 0.0907571
+scale = Vector2(80, 64)
+skew = 1.0472
+texture = ExtResource("7_rht18")
+
+[node name="ObjectRegistrar" type="Node" parent="MedicalTent" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("../FadeScale")
+registry_name = "medicaltent_fade"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="ResourceGiver" type="Node" parent="MedicalTent" node_paths=PackedStringArray("area", "label", "progress_border", "progress_bar")]
+script = ExtResource("10_t4akp")
+source_name = "medical_tent"
+resource_name = "health"
+starting_amount = 5
+maximum_amount = 5
+area = NodePath("../Area2D")
+label = NodePath("../Label")
+refresh_delay = 15.0
+progress_border = NodePath("../ProgressBorder")
+progress_bar = NodePath("../ProgressBorder/MarginContainer/ProgressBar")
+cost = Dictionary[String, int]({
+"gold": 1
+})
+tooltip_message = "[center]Medical Tent gives [color=d5f66e]1[img=20x20]uid://h6ftcoavsi6h[/img][/color] for [color=d5f66e]1[img=20x20]uid://ckmchbj500jke[/img]"
+metadata/_custom_type_script = "uid://dvnf0cajelsoy"
+
+[node name="ObjectRegistrar" type="Node" parent="MedicalTent/ResourceGiver" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "health_resource"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="Area2D" type="Area2D" parent="MedicalTent"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MedicalTent/Area2D"]
+position = Vector2(3, 16)
+shape = SubResource("RectangleShape2D_vfwhk")
+
+[node name="Label" type="Label" parent="MedicalTent"]
+custom_minimum_size = Vector2(128, 0)
+offset_left = -66.0
+offset_top = -61.0
+offset_right = 62.0
+offset_bottom = -24.0
+pivot_offset = Vector2(64, 18)
+text = "5/5"
+label_settings = ExtResource("13_81o5c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBorder" type="Panel" parent="MedicalTent"]
+offset_left = -41.0
+offset_top = -28.0
+offset_right = 39.0
+offset_bottom = -20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_81o5c")
+
+[node name="MarginContainer" type="MarginContainer" parent="MedicalTent/ProgressBorder"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 1
+
+[node name="ProgressBar" type="ColorRect" parent="MedicalTent/ProgressBorder/MarginContainer"]
 show_behind_parent = true
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
@@ -784,9 +902,34 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Nothing" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
+[node name="SkeletonEncounter2" type="TextureRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
+z_index = 1
+material = SubResource("ShaderMaterial_uryex")
 custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
+texture = ExtResource("42_6x4oh")
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("33_uryex")
+enemy_stats = ExtResource("44_01spn")
+metadata/_custom_type_script = "uid://d1h1otuuiy32v"
+
+[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters/SkeletonEncounter2"]
+modulate = Color(0.815686, 0.254902, 0.32549, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(32, 64)
+layout_mode = 0
+offset_left = 59.0
+offset_right = 91.0
+offset_bottom = 64.0
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(16, 16)
+size_flags_horizontal = 4
+texture = ExtResource("31_ac7wk")
+patch_margin_top = 16
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
 
 [node name="Nothing2" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 custom_minimum_size = Vector2(0, 33)
@@ -967,6 +1110,18 @@ registry_name = "bottom_bar"
 world = true
 metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
+[node name="Tooltip" parent="." instance=ExtResource("57_hh7hg")]
+visible = false
+layout_mode = 1
+mouse_filter = 2
+
+[node name="ObjectRegistrar" type="Node" parent="Tooltip" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "tooltip"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
 [node name="BattleCanvas" type="CanvasLayer" parent="."]
 
 [node name="Blackout" type="ColorRect" parent="BattleCanvas"]
@@ -979,7 +1134,8 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="BattleCanvas"]
+[node name="BattleMargin" type="MarginContainer" parent="BattleCanvas"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -992,69 +1148,76 @@ theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 256
 theme_override_constants/margin_bottom = 140
 
-[node name="Panel" type="Panel" parent="BattleCanvas/MarginContainer"]
+[node name="Panel" type="Panel" parent="BattleCanvas/BattleMargin"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_uryex")
 
-[node name="CenterContainer" type="CenterContainer" parent="BattleCanvas/MarginContainer/Panel"]
+[node name="CenterContainer" type="CenterContainer" parent="BattleCanvas/BattleMargin/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BattleCanvas/MarginContainer/Panel/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleCanvas/BattleMargin/Panel/CenterContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 160
 alignment = 1
 
-[node name="HeroContainer" type="Control" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer"]
+[node name="HeroContainer" type="Control" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="HeroTexture" type="TextureRect" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer"]
+[node name="HeroTexture" type="TextureRect" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/HeroContainer"]
 material = SubResource("ShaderMaterial_v16bn")
 layout_mode = 2
 offset_right = 80.0
 offset_bottom = 80.0
 pivot_offset = Vector2(40, 40)
+mouse_filter = 2
 texture = ExtResource("7_8nnr2")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Armor" type="HFlowContainer" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer"]
+[node name="Armor" type="HFlowContainer" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/HeroContainer"]
 layout_mode = 0
 offset_left = -46.0
 offset_top = 74.0
 offset_right = 126.0
 offset_bottom = 142.0
+mouse_filter = 2
 alignment = 1
 
-[node name="ObjectRegistrar" type="Node" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer/Armor" node_paths=PackedStringArray("object")]
+[node name="ObjectRegistrar" type="Node" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/HeroContainer/Armor" node_paths=PackedStringArray("object")]
 script = ExtResource("3_51exa")
 object = NodePath("..")
 registry_name = "armor_container"
 world = true
 metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
-[node name="EnemyContainer" type="Control" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer"]
+[node name="EnemyContainer" type="Control" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+mouse_filter = 2
 
-[node name="EnemyTexture" type="TextureRect" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer"]
+[node name="EnemyTexture" type="TextureRect" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/EnemyContainer"]
 material = SubResource("ShaderMaterial_v16bn")
 layout_mode = 2
 offset_right = 80.0
 offset_bottom = 80.0
 pivot_offset = Vector2(40, 40)
+mouse_filter = 2
 texture = ExtResource("32_riqf5")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="HealthBorder" type="Panel" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture"]
+[node name="HealthBorder" type="Panel" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture"]
 custom_minimum_size = Vector2(128, 16)
 layout_mode = 0
 offset_left = -24.0
@@ -1065,7 +1228,7 @@ size_flags_horizontal = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kqish")
 
-[node name="MarginContainer" type="MarginContainer" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder"]
+[node name="MarginContainer" type="MarginContainer" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -1078,28 +1241,45 @@ theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 1
 
-[node name="HealthBar" type="ColorRect" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder/MarginContainer"]
+[node name="HealthBar" type="ColorRect" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder/MarginContainer"]
 show_behind_parent = true
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 color = Color(0.552941, 0.756863, 0.337255, 1)
 
-[node name="EnemyHealth" type="Node" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder/MarginContainer" node_paths=PackedStringArray("bar")]
+[node name="EnemyHealth" type="Node" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture/HealthBorder/MarginContainer" node_paths=PackedStringArray("bar")]
 script = ExtResource("36_53uw1")
 bar = NodePath("../HealthBar")
 proportion = 125.0
 metadata/_custom_type_script = "uid://boebvigouefa7"
 
-[node name="UIScale" type="Node" parent="BattleCanvas/MarginContainer" node_paths=PackedStringArray("reference")]
+[node name="EnemyArmor" type="HFlowContainer" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/EnemyContainer"]
+layout_mode = 0
+offset_left = -46.0
+offset_top = 74.0
+offset_right = 126.0
+offset_bottom = 142.0
+mouse_filter = 2
+alignment = 1
+
+[node name="ObjectRegistrar" type="Node" parent="BattleCanvas/BattleMargin/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyArmor" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "enemy_armor_container"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="UIScale" type="Node" parent="BattleCanvas/BattleMargin" node_paths=PackedStringArray("reference")]
 script = ExtResource("35_mbqar")
 reference = NodePath("..")
 duration = 1.0
 metadata/_custom_type_script = "uid://n1qdvck6b2a5"
 
-[node name="ColorRect" type="ColorRect" parent="BattleCanvas/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="BattleCanvas/BattleMargin"]
 material = SubResource("ShaderMaterial_n6wyj")
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TopLayer" type="CanvasLayer" parent="."]
 
@@ -1217,7 +1397,7 @@ mouse_filter = 2
 [node name="Panel" type="Panel" parent="TopLayer/Defeat"]
 custom_minimum_size = Vector2(384, 160)
 layout_mode = 2
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rfh6t")
 
 [node name="MarginContainer" type="MarginContainer" parent="TopLayer/Defeat/Panel"]
@@ -1227,6 +1407,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -1234,6 +1415,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TopLayer/Defeat/Panel/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="TopLayer/Defeat/Panel/MarginContainer/VBoxContainer"]
@@ -1246,6 +1428,7 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="TopLayer/Defeat/Panel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Retry" type="Button" parent="TopLayer/Defeat/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -1280,6 +1463,85 @@ reference = NodePath("..")
 duration = 1.0
 metadata/_custom_type_script = "uid://n1qdvck6b2a5"
 
+[node name="Victory" type="CenterContainer" parent="TopLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(480, 270)
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="TopLayer/Victory"]
+custom_minimum_size = Vector2(384, 160)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6x4oh")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopLayer/Victory/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLayer/Victory/Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="TopLayer/Victory/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONGRATS!
+THE KINGDOM IS SLOWLY HEALING..."
+label_settings = SubResource("LabelSettings_88lfo")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopLayer/Victory/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Continue" type="Button" parent="TopLayer/Victory/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("16_rht18")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_88lfo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_24lty")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uxcfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dg0v5")
+text = "NEXT LEVEL"
+
+[node name="LevelSelect" type="Button" parent="TopLayer/Victory/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("16_rht18")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_40fav")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2l3jm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_uxcfi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sjgf8")
+text = "LEVEL SELECT"
+
+[node name="UIScale-victory" type="Node" parent="TopLayer/Victory" node_paths=PackedStringArray("reference")]
+script = ExtResource("35_mbqar")
+reference = NodePath("..")
+duration = 1.0
+metadata/_custom_type_script = "uid://n1qdvck6b2a5"
+
 [node name="Rewards" type="CenterContainer" parent="TopLayer"]
 visible = false
 anchors_preset = 15
@@ -1288,11 +1550,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(480, 270)
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="TopLayer/Rewards"]
 custom_minimum_size = Vector2(600, 350)
 layout_mode = 2
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6v7of")
 
 [node name="MarginContainer" type="MarginContainer" parent="TopLayer/Rewards/Panel"]
@@ -1302,6 +1565,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -1309,11 +1573,13 @@ theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TopLayer/Rewards/Panel/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TutorialText" type="RichTextLabel" parent="TopLayer/Rewards/Panel/MarginContainer/VBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
+mouse_filter = 2
 theme_override_colors/default_color = Color(0.552941, 0.756863, 0.337255, 1)
 theme_override_colors/font_shadow_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
 theme_override_constants/shadow_offset_y = 4
@@ -1335,6 +1601,7 @@ horizontal_alignment = 1
 [node name="Rewards" type="HBoxContainer" parent="TopLayer/Rewards/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 alignment = 1
 
 [node name="RewardTemplate" parent="TopLayer/Rewards/Panel/MarginContainer/VBoxContainer/Rewards" instance=ExtResource("44_24lty")]

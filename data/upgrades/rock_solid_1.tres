@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=5 format=3 uid="uid://c10jriqb3veuf"]
+
+[ext_resource type="Script" uid="uid://o7u4srolhuns" path="res://scripts/game/objects/upgrade_resource.gd" id="1_16geg"]
+[ext_resource type="Resource" uid="uid://bqsnpjcmiwdgm" path="res://data/upgrades/rock_solid_2.tres" id="1_pf40t"]
+[ext_resource type="Texture2D" uid="uid://dypbba71gcbkt" path="res://textures/sprites/upgrades/rock_solid.png" id="2_16geg"]
+[ext_resource type="Script" uid="uid://dtgasfyk40d42" path="res://scripts/game/upgrades/stat_updater.gd" id="3_e5a07"]
+
+[resource]
+script = ExtResource("1_16geg")
+display_name = "Rock Solid I"
+description = "GAIN +1 ARMOR"
+texture = ExtResource("2_16geg")
+upgrade_script = ExtResource("3_e5a07")
+cost = Dictionary[String, int]({
+"gold": 8
+})
+next_resource = ExtResource("1_pf40t")
+parameters = Dictionary[String, Variant]({
+"armor": 1
+})
+metadata/_custom_type_script = "uid://o7u4srolhuns"

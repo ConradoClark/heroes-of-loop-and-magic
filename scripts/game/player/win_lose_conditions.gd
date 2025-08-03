@@ -3,6 +3,7 @@ extends Node
 class_name WinLoseConditions
 
 @export var defeat_panel: UIScale
+@export var victory_panel: UIScale
 @export var retry_button: Button
 @export var continue_button: Button
 @export var level_select_buttons: Array[Button]
@@ -26,7 +27,6 @@ func _ready():
 func _on_reward_manager(obj: RewardManager):
     reward_manager = obj
     reward_manager.on_reward_chosen.connect(_on_reward_chosen)
-    reward_manager.on_reward_skip.connect(_on_reward_chosen)
     
 func _on_reward_chosen():
     encounter_manager.end_encounter()
@@ -54,7 +54,7 @@ func _on_continue():
 func _on_battle_end(enemy: EnemyResource, victory: bool):
     if victory:
         if enemy.is_boss:
-            #show victory cinematics etc 
+            victory_panel.fade_in()
             pass
         else:
             #show rewards

@@ -69,6 +69,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(75, 100)
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_yfv7a")
 
 [node name="Header" type="Panel" parent="Panel"]

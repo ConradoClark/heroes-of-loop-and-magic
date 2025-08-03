@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://by4tabuycslri"]
+
+[ext_resource type="Script" uid="uid://o7u4srolhuns" path="res://scripts/game/objects/upgrade_resource.gd" id="1_v5jhh"]
+[ext_resource type="Texture2D" uid="uid://birdyqb03sjud" path="res://textures/sprites/upgrades/gold_digger.png" id="2_v5jhh"]
+[ext_resource type="Script" uid="uid://dtgasfyk40d42" path="res://scripts/game/upgrades/stat_updater.gd" id="3_gk2bc"]
+
+[resource]
+script = ExtResource("1_v5jhh")
+display_name = "Gold Digger"
+description = "+1 GOLD LOOP BONUS"
+texture = ExtResource("2_v5jhh")
+upgrade_script = ExtResource("3_gk2bc")
+cost = Dictionary[String, int]({
+"gold": 6,
+"wood": 8
+})
+parameters = Dictionary[String, Variant]({
+"gold_bonus": 1
+})
+metadata/_custom_type_script = "uid://o7u4srolhuns"

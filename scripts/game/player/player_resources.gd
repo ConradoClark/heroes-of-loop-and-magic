@@ -36,17 +36,21 @@ func _ready():
     World.require("hero_shield", World.populate(self,"hero_shield"))
     _setup_damage_resources.call_deferred()
     
-func damage(amount: int):
+func damage(amount: int) -> bool:
     var prev = health
     health = clamp(health - amount, 0, max_health)
     if prev != health:
         on_health_changed.emit(amount, health)
+        return true
+    return false
         
 func _setup_damage_resources():
     add_resource("damage", weapon.damage + shield.damage)
     add_resource("armor", weapon.armor + shield.armor)
 
 func add_resource(res: String, amount: int) -> bool:
+    if res=="health":
+        return damage(-amount)
     if not resources.has(res):
         resources[res] = 0
     var prev = resources[res]
@@ -76,8 +80,11 @@ func check(values: Dictionary[String,int]) -> bool:
 
 func pay(values: Dictionary[String, int]) -> bool:
     if check(values):
+        var amount = 0
         for key in values:
+            amount += values[key]
             resources[key]-= values[key]
+            on_resource_changed.emit(key, amount, resources[key])
         return true
     return false
     

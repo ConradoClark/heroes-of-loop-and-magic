@@ -14,3 +14,7 @@ func _apply():
         player_resources.speed_multiplier = parameters["move_speed_multiplier"]
     if parameters.has("damage"):
         player_resources.add_resource("damage", parameters["damage"])
+    if parameters.has("armor"):
+        player_resources.add_resource("armor", parameters["armor"])
+    if parameters.has("gold_bonus"):
+        player_resources.bonus_by_source["gold"] += parameters["gold_bonus"]

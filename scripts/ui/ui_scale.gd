@@ -21,10 +21,10 @@ func fade_in():
     tween = create_tween()
     tween.tween_property(reference, "scale", Vector2(1.2, 1.2), duration*.75)\
         .set_ease(Tween.EASE_OUT)\
-        .set_trans(Tween.TRANS_SPRING)
+        .set_trans(Tween.TRANS_ELASTIC)
     tween.tween_property(reference, "scale", Vector2.ONE, duration*.25)\
         .set_ease(Tween.EASE_OUT)\
-        .set_trans(Tween.TRANS_ELASTIC)
+        .set_trans(Tween.TRANS_QUAD)
 
 func fade_out():
     if not is_showing: return

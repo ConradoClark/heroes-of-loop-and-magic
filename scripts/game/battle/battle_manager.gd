@@ -21,8 +21,10 @@ var enemy_tween: Tween
 var current_enemy: EnemyResource
 var current_enemy_health: int
 var current_armor: int
+var current_enemy_armor: int
 
 var armor_container: HFlowContainer
+var enemy_armor_container: HFlowContainer
 
 signal on_battle_start(enemy: EnemyResource)
 signal on_battle_end(enemy: EnemyResource, victory: bool)
@@ -31,6 +33,8 @@ signal enemy_damaged(amount: int, health: int, max_health: int)
 const FLOATING_BATTLE_NUMBER = preload("res://scenes/ui/floating/floating_battle_number.tscn")
 const FLOATING_BLOCK = preload("res://scenes/ui/floating/floating_block.tscn")
 const SHIELD = preload("res://textures/ui/icons/shield.png")
+
+var is_battling: bool
 
 func _ready():
     hero_timer = _create_timer()
@@ -44,6 +48,7 @@ func _ready():
     World.require("player_resources", _on_player_resources)
     World.require("floating_manager", World.populate(self, "floating_manager"))
     World.require("armor_container", World.populate(self, "armor_container"))
+    World.require("enemy_armor_container", World.populate(self, "enemy_armor_container"))
     
 func _on_player_resources(obj: PlayerResources):
     player_resources = obj
@@ -60,7 +65,9 @@ func _on_encounter_manager(obj: EncounterManager):
     
 func _on_encounter_start(enemy: EnemyResource):
     on_battle_start.emit(enemy)
+    is_battling = true
     _load_armor()
+    _load_enemy_armor(enemy)
     hero_texture.scale = Vector2.ONE
     hero_texture.rotation_degrees = 0.
     enemy_texture.scale = Vector2.ONE
@@ -81,6 +88,16 @@ func _load_armor():
         icon.texture = SHIELD
         armor_container.add_child(icon)
     current_armor = player_resources.resources["armor"]
+    
+func _load_enemy_armor(enemy: EnemyResource):
+    current_enemy_armor = enemy.armor
+    for c in enemy_armor_container.get_children():
+        c.queue_free()
+    if current_enemy_armor <=0: return
+    for i in current_enemy_armor:
+        var icon = TextureRect.new()
+        icon.texture = SHIELD
+        enemy_armor_container.add_child(icon)
 
 func _fight(enemy: EnemyResource):
     current_enemy_health = enemy.max_health
@@ -104,10 +121,16 @@ func _on_hero_attack():
         .set_trans(Tween.TRANS_QUAD)
     await get_tree().create_timer(0.3).timeout
     var dmg = player_resources.calculate_damage()
-    var pos = enemy_texture.get_global_rect().get_center() + Fx.random_inside_unit_circle() * 10 + Vector2(0, -20)
-    _show_damage_number(pos, dmg)
-    _damage_enemy(dmg)
-    _damage_blink(enemy_texture)
+    dmg = _try_damage_enemy_armor(dmg)
+    if dmg >0:
+        var pos = enemy_texture.get_global_rect().get_center() + Fx.random_inside_unit_circle() * 10 + Vector2(0, -20)
+        _show_damage_number(pos, dmg)
+        _damage_enemy(dmg)
+        _damage_blink(enemy_texture)
+    else:
+        var pos = enemy_texture.get_global_rect().get_center() + Fx.random_inside_unit_circle() * 10 + Vector2(0, -20)
+        _show_armor_block(pos, dmg)
+        _armor_blink(enemy_texture)
 
 func _damage_enemy(dmg: int):
     if current_enemy_health <0: return
@@ -123,6 +146,7 @@ func _enemy_defeat():
     fade_out_blackout.call_deferred()
     battle_ui.fade_out()
     player_resources.clear_temporary_resources()
+    is_battling = false
     on_battle_end.emit(current_enemy, true)
     
 func _enemy_death_animate():
@@ -167,7 +191,7 @@ func _on_enemy_attack():
     else:
         var pos = hero_texture.get_global_rect().get_center() + Fx.random_inside_unit_circle() * 10 + Vector2(0, -20)
         _show_armor_block(pos, dmg)
-        _damage_blink(hero_texture)
+        _armor_blink(hero_texture)
     
 func _try_damage_armor(damage: int) -> int:
     var remaining = 0
@@ -183,12 +207,27 @@ func _try_damage_armor(damage: int) -> int:
             children[i].queue_free()
     return remaining
     
+func _try_damage_enemy_armor(damage:int) -> int:
+    var remaining = 0
+    if damage > current_enemy_armor:
+        remaining = damage - current_enemy_armor
+        current_enemy_armor = 0
+    else:
+        current_enemy_armor -= damage
+    var children = enemy_armor_container.get_children()
+    var amount_to_remove = len(children) - current_enemy_armor
+    if amount_to_remove>0:
+        for i in amount_to_remove:
+            children[i].queue_free()
+    return remaining
+    
 func _player_defeat():
     hero_timer.stop()
     enemy_timer.stop()
     await _hero_death_animate()
     fade_out_blackout.call_deferred()
     battle_ui.fade_out()
+    is_battling = false
     on_battle_end.emit(current_enemy, false)
     
 func _hero_death_animate():

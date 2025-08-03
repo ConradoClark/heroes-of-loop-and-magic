@@ -23,7 +23,8 @@ func play_tutorial():
         "king_bobble", "king_speak", "lumbermill_fade", "tutorial_text",
         "path_manager", "lumbermill_resource", "goldmine_resource", "goldmine_fade",
         "player_resources", "resources_fade", "king_health_fade", "encounter_manager",
-        "encounter_meter_fade", "battle_manager", "example_circle", "bottom_bar"])
+        "encounter_meter_fade", "battle_manager", "example_circle", "bottom_bar", "reward_manager",
+        "medicaltent_fade", "health_resource"])
     var tutorial_text = World.require("tutorial_text") as RichTextLabel
     tutorial_text.visible = false
     line_drawer.blocker.block("tutorial")
@@ -105,10 +106,21 @@ func play_tutorial():
     await battle_manager.on_battle_start
     tutorial_text.text = "[center][wave]Watch the battle unfold!"
     tutorial_text.visible = false
-    #path_manager.pause_paths()
-    #await message_box.message("")
-    #await message_box.message("Use your resources to buy upgrades.")
-    #path_manager.unpause_paths()
+    var reward_manager = World.require("reward_manager") as RewardManager
+    await reward_manager.on_reward_chosen
+    var medicaltent_fade = World.require("medicaltent_fade") as FadeScale
+    medicaltent_fade.start_animation()
+    var health_resource = World.require("health_resource") as ResourceGiver
+    health_resource.active = true
+    line_drawer.blocker.block("tutorial")
+    path_manager.pause_paths()
+    await message_box.message("You can use the medical tent to heal yourself.")
+    await message_box.message("You have to pay resources, though.")
+    await message_box.message("Hover on the building to see more info.")
+    await message_box.message("Try to defeat this area's boss. Good luck!")
+    await message_box.hide_box()
+    line_drawer.blocker.unblock("tutorial")
+    path_manager.unpause_paths()
     
 func _start_speak():
     speak.start_animation()

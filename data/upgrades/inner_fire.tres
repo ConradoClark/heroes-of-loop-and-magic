@@ -11,8 +11,8 @@ description = "DEAL +1 DAMAGE"
 texture = ExtResource("2_6pkbt")
 upgrade_script = ExtResource("4_cijas")
 cost = Dictionary[String, int]({
-"gold": 2,
-"wood": 10
+"gold": 10,
+"wood": 15
 })
 parameters = Dictionary[String, Variant]({
 "damage": 1

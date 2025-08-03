@@ -75,7 +75,7 @@ func load_reward(obj: RewardResource):
     item_icon.texture = reward.texture_reward
     item_description.text = reward.description
     flavor.text = reward.flavor_text
-    upgrade_with.visible = len(reward.upgrades_with) > 0
+    upgrade_with.visible = false #len(reward.upgrades_with) > 0
     wood.visible = reward.upgrades_with.has("wood")
     gold.visible = reward.upgrades_with.has("gold")
     crystal.visible = reward.upgrades_with.has("crystal")
