@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://toe2u64ldcea"]
+
+[ext_resource type="Script" uid="uid://c1mbmbsnsdt1b" path="res://scripts/ui/upgrade_card.gd" id="1_7qlc5"]
+[ext_resource type="LabelSettings" uid="uid://wqrybt48ohod" path="res://presets/label_settings/equipment_title.tres" id="2_i0sx1"]
+[ext_resource type="Texture2D" uid="uid://ccdtypnoudu1w" path="res://textures/sprites/upgrades/leg_day.png" id="3_k5gol"]
+[ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="4_e3ah8"]
+[ext_resource type="Script" uid="uid://n1qdvck6b2a5" path="res://scripts/ui/ui_scale.gd" id="7_kg0c7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfv7a"]
+bg_color = Color(0.87451, 0.796078, 0.74902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_oerl1"]
+line_spacing = -5.0
+font = ExtResource("4_e3ah8")
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(1, 1, 1, 0)
+
+[node name="UpgradeTemplate" type="Control"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -100.0
+offset_right = 25.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 75)
+mouse_filter = 2
+script = ExtResource("1_7qlc5")
+metadata/_custom_type_script = "uid://c1mbmbsnsdt1b"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(75, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yfv7a")
+
+[node name="Header" type="Panel" parent="Panel"]
+custom_minimum_size = Vector2(80, 32)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 64)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yfv7a")
+
+[node name="Title" type="Label" parent="Panel/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Leg Day"
+label_settings = ExtResource("2_i0sx1")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 48
+
+[node name="Content" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("3_k5gol")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ItemDescription" type="Label" parent="Panel/Margin/Content"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 6
+text = "WALK 10% FASTER"
+label_settings = SubResource("LabelSettings_oerl1")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Bottom" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CostContainer" type="HBoxContainer" parent="Panel/Bottom"]
+layout_mode = 2
+alignment = 1
+
+[node name="UIScale" type="Node" parent="." node_paths=PackedStringArray("reference")]
+script = ExtResource("7_kg0c7")
+reference = NodePath("..")
+is_showing = true
+duration = 0.5
+metadata/_custom_type_script = "uid://n1qdvck6b2a5"

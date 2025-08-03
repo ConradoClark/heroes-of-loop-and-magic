@@ -23,7 +23,7 @@ func play_tutorial():
         "king_bobble", "king_speak", "lumbermill_fade", "tutorial_text",
         "path_manager", "lumbermill_resource", "goldmine_resource", "goldmine_fade",
         "player_resources", "resources_fade", "king_health_fade", "encounter_manager",
-        "encounter_meter_fade", "battle_manager"])
+        "encounter_meter_fade", "battle_manager", "example_circle", "bottom_bar"])
     var tutorial_text = World.require("tutorial_text") as RichTextLabel
     tutorial_text.visible = false
     line_drawer.blocker.block("tutorial")
@@ -51,6 +51,8 @@ func play_tutorial():
     line_drawer.blocker.unblock("tutorial")
     tutorial_text.text = "[center][wave]Click and drag to make a looping path through the lumbermill"
     tutorial_text.visible = true
+    var example_circle = World.require("example_circle") as Node2D
+    example_circle.visible = true
     var path_manager = World.require("path_manager") as PathManager
     await path_manager.on_path_created
     var lumbermill_resource = World.require("lumbermill_resource") as ResourceGiver
@@ -61,6 +63,7 @@ func play_tutorial():
         await path_manager.on_path_created 
     tutorial_text.text = "[center][wave]Nice, watch as the king goes and collects the resource"
     tutorial_text.visible = true
+    example_circle.visible = false
     line_drawer.blocker.block("tutorial")
     await path_manager.on_path_loop
     tutorial_text.visible = false
@@ -88,6 +91,8 @@ func play_tutorial():
     await message_box.message("Monsters will show up after some time. Be prepared to fight them.")
     await message_box.hide_box()
     path_manager.unpause_paths()
+    var bottom_bar = World.require("bottom_bar") as UIFade
+    bottom_bar.fade_in()
     tutorial_text.text = "[center][wave]Get ready to battle"
     tutorial_text.visible = true
     var health_ui = World.require("king_health_fade") as UIFade

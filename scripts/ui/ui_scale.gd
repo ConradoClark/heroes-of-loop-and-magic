@@ -24,7 +24,7 @@ func fade_in():
         .set_trans(Tween.TRANS_SPRING)
     tween.tween_property(reference, "scale", Vector2.ONE, duration*.25)\
         .set_ease(Tween.EASE_OUT)\
-        .set_trans(Tween.TRANS_BOUNCE)
+        .set_trans(Tween.TRANS_ELASTIC)
 
 func fade_out():
     if not is_showing: return
@@ -33,7 +33,7 @@ func fade_out():
         tween.kill()
     tween = create_tween()
     tween.tween_property(reference, "scale", Vector2(0.01, 0.01), duration)\
-        .set_ease(Tween.EASE_OUT)\
-        .set_trans(Tween.TRANS_SPRING)
+        .set_ease(Tween.EASE_IN)\
+        .set_trans(Tween.TRANS_BACK)
     await tween.finished
     reference.visible = false

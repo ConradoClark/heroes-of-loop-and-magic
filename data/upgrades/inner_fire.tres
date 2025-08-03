@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=4 format=3 uid="uid://514yq17re8g8"]
+
+[ext_resource type="Script" uid="uid://o7u4srolhuns" path="res://scripts/game/objects/upgrade_resource.gd" id="2_2b7ev"]
+[ext_resource type="Texture2D" uid="uid://d2w3p0b6btr8c" path="res://textures/sprites/upgrades/inner_fire.png" id="2_6pkbt"]
+[ext_resource type="Script" uid="uid://dtgasfyk40d42" path="res://scripts/game/upgrades/stat_updater.gd" id="4_cijas"]
+
+[resource]
+script = ExtResource("2_2b7ev")
+display_name = "Inner Fire I"
+description = "DEAL +1 DAMAGE"
+texture = ExtResource("2_6pkbt")
+upgrade_script = ExtResource("4_cijas")
+cost = Dictionary[String, int]({
+"gold": 2,
+"wood": 10
+})
+parameters = Dictionary[String, Variant]({
+"damage": 1
+})
+metadata/_custom_type_script = "uid://o7u4srolhuns"

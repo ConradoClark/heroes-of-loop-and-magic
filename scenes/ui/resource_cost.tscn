@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1sq6veqrcdia"]
+
+[ext_resource type="Texture2D" uid="uid://bcikxyx1u82we" path="res://textures/ui/icons/wood.png" id="1_eriao"]
+[ext_resource type="Script" uid="uid://bw6alcnwd4lr2" path="res://scripts/ui/resource_cost.gd" id="1_sm61c"]
+[ext_resource type="LabelSettings" uid="uid://cxnaajruiuyxf" path="res://presets/label_settings/resource.tres" id="2_sm61c"]
+
+[node name="ResourceCost" type="HBoxContainer"]
+offset_right = 39.0
+offset_bottom = 37.0
+size_flags_vertical = 0
+script = ExtResource("1_sm61c")
+metadata/_custom_type_script = "uid://bw6alcnwd4lr2"
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(24, 28)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("1_eriao")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "5"
+label_settings = ExtResource("2_sm61c")
+horizontal_alignment = 1

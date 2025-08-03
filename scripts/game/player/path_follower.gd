@@ -11,6 +11,7 @@ class_name PathFollower
 var ink_manager: InkManager
 var path_manager: PathManager
 var floating_manager: FloatingManager
+var player_resources: PlayerResources
 var current_points: PackedVector2Array
 var current_index: int = 0
 var closest_ix:int = 0
@@ -24,6 +25,7 @@ func _ready():
     World.require("ink_manager", _on_ink_manager)
     World.require("path_manager", _on_path_manager)
     World.require("floating_manager", World.populate(self, "floating_manager"))
+    World.require("player_resources", World.populate(self, "player_resources"))
     
 func _on_path_manager(obj: PathManager):
     path_manager = obj
@@ -69,7 +71,7 @@ func _move(pos: Vector2):
                     await get_tree().process_frame
                 if bobble: bobble.start_bobble()
             var current_pos = reference.global_position
-            var dir = (pos - current_pos).normalized() * speed
+            var dir = (pos - current_pos).normalized() * (speed * player_resources.speed_multiplier)
             reference.global_position += dir * get_process_delta_time()
             await get_tree().process_frame
         if not _moving: break

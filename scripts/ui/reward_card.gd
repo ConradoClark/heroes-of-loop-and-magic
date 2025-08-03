@@ -59,7 +59,7 @@ func _animate_select():
         .set_trans(Tween.TRANS_BACK)\
         .set_delay(0.5)
     tween.set_parallel(true)
-    tween.tween_property(self, "position", Vector2(0,-40), 1.)
+    tween.tween_property(self, "global_position", global_position + Vector2(0,-40), 1.)
     await tween.finished
 
 func _mouse_entered():

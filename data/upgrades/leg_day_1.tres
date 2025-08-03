@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=5 format=3 uid="uid://bvasaqeyhoi0n"]
+
+[ext_resource type="Resource" uid="uid://cendirbvwwuuf" path="res://data/upgrades/leg_day_2.tres" id="1_p2h3v"]
+[ext_resource type="Script" uid="uid://o7u4srolhuns" path="res://scripts/game/objects/upgrade_resource.gd" id="1_s8rrc"]
+[ext_resource type="Texture2D" uid="uid://ccdtypnoudu1w" path="res://textures/sprites/upgrades/leg_day.png" id="2_qtgns"]
+[ext_resource type="Script" uid="uid://dtgasfyk40d42" path="res://scripts/game/upgrades/stat_updater.gd" id="4_hsvuj"]
+
+[resource]
+script = ExtResource("1_s8rrc")
+display_name = "Leg Day I"
+description = "MOVE 10% FASTER"
+texture = ExtResource("2_qtgns")
+upgrade_script = ExtResource("4_hsvuj")
+cost = Dictionary[String, int]({
+"wood": 5
+})
+next_resource = ExtResource("1_p2h3v")
+parameters = Dictionary[String, Variant]({
+"move_speed_multiplier": 1.1
+})
+metadata/_custom_type_script = "uid://o7u4srolhuns"

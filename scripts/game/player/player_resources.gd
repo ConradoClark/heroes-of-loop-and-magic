@@ -25,6 +25,9 @@ var health: int = 10
 var hero_weapon: Sprite2D
 var hero_shield: Sprite2D
 
+@export var available_upgrades: Array[UpgradeResource]
+var speed_multiplier: float = 1.
+
 signal on_health_changed(amount: int, total:int)
 
 func _ready():

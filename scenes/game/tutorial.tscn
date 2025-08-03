@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://suj5fxf2xncx"]
+[gd_scene load_steps=82 format=3 uid="uid://suj5fxf2xncx"]
 
 [ext_resource type="Script" uid="uid://bbe3kfjxtdmgu" path="res://scripts/game/player/ink_manager.gd" id="1_lsg8u"]
 [ext_resource type="Script" uid="uid://bkei43vrao416" path="res://scripts/game/player/inks/tap_ink.gd" id="2_ep3tm"]
@@ -15,18 +15,22 @@
 [ext_resource type="Texture2D" uid="uid://ck7hwlogswxf5" path="res://textures/sprites/knight.png" id="7_8nnr2"]
 [ext_resource type="Script" uid="uid://d1fcig88f0i2g" path="res://scripts/game/player/encounter_manager.gd" id="7_ac7wk"]
 [ext_resource type="Texture2D" uid="uid://dg8m1gbvevld5" path="res://textures/ui/white.png" id="7_rht18"]
+[ext_resource type="Script" uid="uid://o7u4srolhuns" path="res://scripts/game/objects/upgrade_resource.gd" id="8_drqpf"]
 [ext_resource type="Script" uid="uid://cat8fc8s1q74u" path="res://scripts/game/player/path_follower.gd" id="8_rht18"]
 [ext_resource type="Script" uid="uid://drvg83o7gp7im" path="res://scripts/game/battle/battle_manager.gd" id="8_u3pxu"]
 [ext_resource type="PackedScene" uid="uid://y2vbesdgta02" path="res://scenes/ui/message_box.tscn" id="9_0tqu0"]
 [ext_resource type="Script" uid="uid://da5oj42j6s5tk" path="res://scripts/game/player/win_lose_conditions.gd" id="9_rfh6t"]
+[ext_resource type="Resource" uid="uid://bvasaqeyhoi0n" path="res://data/upgrades/leg_day_1.tres" id="9_vouot"]
 [ext_resource type="Script" uid="uid://k8n2op1t2yt3" path="res://scripts/core/actor.gd" id="10_51exa"]
 [ext_resource type="Script" uid="uid://dh1oo8eybsvuw" path="res://scripts/game/player/reward_manager.gd" id="10_88lfo"]
+[ext_resource type="Resource" uid="uid://514yq17re8g8" path="res://data/upgrades/inner_fire.tres" id="10_drqpf"]
 [ext_resource type="Script" uid="uid://dvnf0cajelsoy" path="res://scripts/game/objects/resource_giver.gd" id="10_t4akp"]
 [ext_resource type="Texture2D" uid="uid://xua4m7acgw41" path="res://textures/sprites/white_circle_4x.png" id="11_1g4j3"]
 [ext_resource type="Script" uid="uid://bon0cijw885ro" path="res://scripts/game/effects/bobble.gd" id="12_1g4j3"]
 [ext_resource type="Script" uid="uid://drkgqbwhfq641" path="res://scripts/cinematics/tutorial.gd" id="13_12ab8"]
 [ext_resource type="LabelSettings" uid="uid://c8xe6xfqgrla6" path="res://presets/label_settings/resource_counter.tres" id="13_81o5c"]
 [ext_resource type="Script" uid="uid://begb58aqkntr7" path="res://scripts/game/effects/speak.gd" id="13_bltja"]
+[ext_resource type="Texture2D" uid="uid://wyr0egirulbt" path="res://textures/ui/circle_example.png" id="15_8hnbn"]
 [ext_resource type="FontFile" uid="uid://dufgaxspluulr" path="res://fonts/LTMakeup-Regular.otf" id="16_rht18"]
 [ext_resource type="PackedScene" uid="uid://bcg0qpbcugib3" path="res://scenes/ui/resource_container.tscn" id="21_n4xfx"]
 [ext_resource type="Texture2D" uid="uid://bcikxyx1u82we" path="res://textures/ui/icons/wood.png" id="22_shuml"]
@@ -50,8 +54,10 @@
 [ext_resource type="Resource" uid="uid://dy0er8has5qrk" path="res://data/enemies/skeleton.tres" id="39_7mjhv"]
 [ext_resource type="Script" uid="uid://bkykjgchy4w6s" path="res://scripts/ui/player_health.gd" id="40_v16bn"]
 [ext_resource type="PackedScene" uid="uid://r5rys5031rbl" path="res://scenes/ui/screen_transition.tscn" id="42_kqish"]
+[ext_resource type="PackedScene" uid="uid://toe2u64ldcea" path="res://scenes/ui/upgrade_template.tscn" id="43_7mjhv"]
 [ext_resource type="PackedScene" uid="uid://bgfmloegobr70" path="res://scenes/ui/reward_template.tscn" id="44_24lty"]
 [ext_resource type="Resource" uid="uid://beqx5xheynemj" path="res://data/rewards/apple.tres" id="45_uxcfi"]
+[ext_resource type="Script" uid="uid://cpdy60s0lhyn7" path="res://scripts/ui/upgrades_ui.gd" id="46_wp8yl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfwhk"]
 size = Vector2(90, 80)
@@ -304,8 +310,12 @@ metadata/_custom_type_script = "uid://tm1xsyh3wur2"
 
 [node name="PlayerResources" type="Node" parent="Managers"]
 script = ExtResource("5_vfwhk")
+resources = Dictionary[String, int]({
+"armor": 10
+})
 weapon = ExtResource("6_sjgf8")
 shield = ExtResource("7_6v7of")
+available_upgrades = Array[ExtResource("8_drqpf")]([ExtResource("9_vouot"), ExtResource("10_drqpf")])
 metadata/_custom_type_script = "uid://w657rmllofrk"
 
 [node name="FloatingManager" type="Node" parent="Managers" node_paths=PackedStringArray("floating_container")]
@@ -315,7 +325,7 @@ metadata/_custom_type_script = "uid://twh7urwm84kn"
 
 [node name="EncounterManager" type="Node" parent="Managers" node_paths=PackedStringArray("king_marker")]
 script = ExtResource("7_ac7wk")
-king_marker = NodePath("../../EncounterMeter/Control/KingMarker")
+king_marker = NodePath("../../EncounterMeter/CenterContainer/MarginContainer/Control/KingMarker")
 metadata/_custom_type_script = "uid://d1fcig88f0i2g"
 
 [node name="BattleManager" type="Node" parent="Managers" node_paths=PackedStringArray("battle_ui", "blackout", "hero_texture", "enemy_texture")]
@@ -325,6 +335,7 @@ blackout = NodePath("../../BattleCanvas/Blackout")
 hero_texture = NodePath("../../BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer/HeroTexture")
 enemy_texture = NodePath("../../BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/EnemyContainer/EnemyTexture")
 damage_color = Color(1, 0.862745, 0.415686, 0.6)
+armor_color = Color(0.674815, 0.674815, 0.674815, 0.6)
 metadata/_custom_type_script = "uid://drvg83o7gp7im"
 
 [node name="WinLoseConditions" type="Node" parent="Managers" node_paths=PackedStringArray("defeat_panel", "retry_button", "level_select_buttons")]
@@ -355,6 +366,19 @@ world = true
 metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
 [node name="LineContainer" type="Node2D" parent="."]
+
+[node name="CircleExample" type="Sprite2D" parent="LineContainer"]
+visible = false
+modulate = Color(1, 1, 1, 0.188235)
+position = Vector2(616, 333)
+texture = ExtResource("15_8hnbn")
+
+[node name="ObjectRegistrar" type="Node" parent="LineContainer/CircleExample" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "example_circle"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
 [node name="Lumbermill" type="Sprite2D" parent="."]
 position = Vector2(631, 254)
@@ -738,25 +762,37 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -100.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/margin_top = 128
 theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 148
 
-[node name="Encounters" type="VBoxContainer" parent="EncounterMeter"]
+[node name="CenterContainer" type="Control" parent="EncounterMeter"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="EncounterMeter/CenterContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Encounters" type="VBoxContainer" parent="EncounterMeter/CenterContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Nothing" type="Control" parent="EncounterMeter/Encounters"]
+[node name="Nothing" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
-[node name="Nothing2" type="Control" parent="EncounterMeter/Encounters"]
+[node name="Nothing2" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
-[node name="SkeletonEncounter" type="TextureRect" parent="EncounterMeter/Encounters"]
+[node name="SkeletonEncounter" type="TextureRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 z_index = 1
 material = SubResource("ShaderMaterial_uryex")
 custom_minimum_size = Vector2(0, 33)
@@ -768,7 +804,7 @@ script = ExtResource("33_uryex")
 enemy_stats = ExtResource("39_7mjhv")
 metadata/_custom_type_script = "uid://d1h1otuuiy32v"
 
-[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/Encounters/SkeletonEncounter"]
+[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters/SkeletonEncounter"]
 modulate = Color(0.815686, 0.254902, 0.32549, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(32, 64)
@@ -785,15 +821,15 @@ patch_margin_top = 16
 patch_margin_bottom = 16
 axis_stretch_horizontal = 1
 
-[node name="Nothing4" type="Control" parent="EncounterMeter/Encounters"]
+[node name="Nothing4" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
-[node name="Nothing6" type="Control" parent="EncounterMeter/Encounters"]
+[node name="Nothing6" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
-[node name="SlimeEncounter" type="TextureRect" parent="EncounterMeter/Encounters"]
+[node name="SlimeEncounter" type="TextureRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 z_index = 1
 material = SubResource("ShaderMaterial_uryex")
 custom_minimum_size = Vector2(0, 33)
@@ -805,7 +841,7 @@ script = ExtResource("33_uryex")
 enemy_stats = ExtResource("35_aj8vu")
 metadata/_custom_type_script = "uid://d1h1otuuiy32v"
 
-[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/Encounters/SlimeEncounter"]
+[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters/SlimeEncounter"]
 modulate = Color(0.815686, 0.254902, 0.32549, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(32, 64)
@@ -822,25 +858,25 @@ patch_margin_top = 16
 patch_margin_bottom = 16
 axis_stretch_horizontal = 1
 
-[node name="Nothing7" type="Control" parent="EncounterMeter/Encounters"]
+[node name="Nothing7" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
-[node name="Nothing8" type="Control" parent="EncounterMeter/Encounters"]
+[node name="Nothing8" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer/Encounters"]
 custom_minimum_size = Vector2(0, 33)
 layout_mode = 2
 
-[node name="NinePatchRect" type="NinePatchRect" parent="EncounterMeter"]
-custom_minimum_size = Vector2(32, 0)
+[node name="NinePatchRect" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(32, 250)
 layout_mode = 2
 size_flags_horizontal = 8
 texture = ExtResource("31_ac7wk")
 axis_stretch_vertical = 2
 
-[node name="Control" type="Control" parent="EncounterMeter"]
+[node name="Control" type="Control" parent="EncounterMeter/CenterContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="KingMarker" type="TextureRect" parent="EncounterMeter/Control"]
+[node name="KingMarker" type="TextureRect" parent="EncounterMeter/CenterContainer/MarginContainer/Control"]
 z_index = 1
 material = SubResource("ShaderMaterial_riqf5")
 custom_minimum_size = Vector2(32, 32)
@@ -854,7 +890,7 @@ texture = ExtResource("7_8nnr2")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/Control/KingMarker"]
+[node name="TextureRect2" type="NinePatchRect" parent="EncounterMeter/CenterContainer/MarginContainer/Control/KingMarker"]
 modulate = Color(1, 0.862745, 0.415686, 1)
 show_behind_parent = true
 custom_minimum_size = Vector2(32, 64)
@@ -871,17 +907,63 @@ patch_margin_top = 16
 patch_margin_bottom = 16
 axis_stretch_horizontal = 1
 
-[node name="UIFade" type="Node" parent="EncounterMeter" node_paths=PackedStringArray("reference")]
+[node name="UIFade" type="Node" parent="EncounterMeter/CenterContainer/MarginContainer" node_paths=PackedStringArray("reference")]
 script = ExtResource("24_c8uhw")
-reference = NodePath("..")
+reference = NodePath("../../..")
 offset = Vector2(120, 0)
 duration = 1.0
 metadata/_custom_type_script = "uid://befbm3t0x61pp"
 
-[node name="ObjectRegistrar" type="Node" parent="EncounterMeter/UIFade" node_paths=PackedStringArray("object")]
+[node name="ObjectRegistrar" type="Node" parent="EncounterMeter/CenterContainer/MarginContainer/UIFade" node_paths=PackedStringArray("object")]
 script = ExtResource("3_51exa")
 object = NodePath("..")
 registry_name = "encounter_meter_fade"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
+
+[node name="BottomBar" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 8
+
+[node name="UpgradeContainer" type="HBoxContainer" parent="BottomBar"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("46_wp8yl")
+metadata/_custom_type_script = "uid://cpdy60s0lhyn7"
+
+[node name="UpgradeTemplate" parent="BottomBar/UpgradeContainer" instance=ExtResource("43_7mjhv")]
+layout_mode = 2
+
+[node name="UpgradeTemplate2" parent="BottomBar/UpgradeContainer" instance=ExtResource("43_7mjhv")]
+layout_mode = 2
+
+[node name="UpgradeTemplate3" parent="BottomBar/UpgradeContainer" instance=ExtResource("43_7mjhv")]
+layout_mode = 2
+
+[node name="UpgradeTemplate4" parent="BottomBar/UpgradeContainer" instance=ExtResource("43_7mjhv")]
+layout_mode = 2
+
+[node name="UIFade" type="Node" parent="BottomBar" node_paths=PackedStringArray("reference")]
+script = ExtResource("24_c8uhw")
+reference = NodePath("..")
+offset = Vector2(0, 180)
+duration = 1.0
+metadata/_custom_type_script = "uid://befbm3t0x61pp"
+
+[node name="ObjectRegistrar" type="Node" parent="BottomBar/UIFade" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "bottom_bar"
 world = true
 metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
@@ -898,7 +980,6 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="BattleCanvas"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -943,6 +1024,21 @@ pivot_offset = Vector2(40, 40)
 texture = ExtResource("7_8nnr2")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Armor" type="HFlowContainer" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer"]
+layout_mode = 0
+offset_left = -46.0
+offset_top = 74.0
+offset_right = 126.0
+offset_bottom = 142.0
+alignment = 1
+
+[node name="ObjectRegistrar" type="Node" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer/HeroContainer/Armor" node_paths=PackedStringArray("object")]
+script = ExtResource("3_51exa")
+object = NodePath("..")
+registry_name = "armor_container"
+world = true
+metadata/_custom_type_script = "uid://dvsu4kgpgqnbi"
 
 [node name="EnemyContainer" type="Control" parent="BattleCanvas/MarginContainer/Panel/CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
@@ -1014,6 +1110,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="MessageBox" parent="TopLayer" instance=ExtResource("9_0tqu0")]
+visible = false
 
 [node name="TutorialTopText" type="MarginContainer" parent="TopLayer"]
 custom_minimum_size = Vector2(0, 128)
